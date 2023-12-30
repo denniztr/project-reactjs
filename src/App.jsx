@@ -1,7 +1,11 @@
+import { MainPage } from "./pages"
+import { Header } from "./components"
+
 function App() {
   return (
     <>
-    <h1>It works !</h1>
+      <Header />
+      <MainPage />
     </>
   )
 }
