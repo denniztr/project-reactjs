@@ -1,10 +1,13 @@
 import { useState } from 'react';
-import { SlArrowLeft } from 'react-icons/sl';
+import { useDispatch } from 'react-redux';
+import { SlArrowLeft, SlClose } from 'react-icons/sl';
 import SkyproLogoModal from '../../assets/icons/logo_modal.png';
+import { setAuthModal } from '../../store/slice/modal-slice';
 
 import './auth.scss';
 
 export const Authorization = () => {
+  const dispatch = useDispatch();
   const [loginMode, setLoginMode] = useState(false);
 
   const handleLoginModalChange = () => {
@@ -79,6 +82,15 @@ export const Authorization = () => {
         </div>
       ) : (
         <div className="modal__block">
+          <SlClose             
+            style={{
+              position: 'absolute',
+              top: '45px',
+              left: '40px',
+              cursor: 'pointer',
+            }}
+            onClick={() => dispatch(setAuthModal(false))}
+            />
           <form
             className="modal__form-login"
             style={{ height: '100%' }}

@@ -1,3 +1,4 @@
+import { CiImageOff } from "react-icons/ci";
 import './cards.scss';
 
 export const CardsContent = () => {
@@ -8,7 +9,8 @@ export const CardsContent = () => {
           <div className="cards__card card">
             <a>
               <div className="card__image">
-                <img alt="" />
+                {/* <img alt=""/> */}
+                <CiImageOff style={{'position': 'absolute', 'top': '45%', 'left': '45%'}}/>
               </div>
             </a>
             <div className="card__content">
