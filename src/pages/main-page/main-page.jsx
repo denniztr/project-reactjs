@@ -1,7 +1,10 @@
+import { useGetAdvQuery } from '../../store/adv-api/index';
 import { SearchQuery, CardsContent } from '../../components';
 import './main-page.scss';
 
 export const MainPage = () => {
+  const { data } = useGetAdvQuery();
+  if (data) console.log(data);
   return (
     <div className='wrapper'>
       <div className='container'>
