@@ -6,7 +6,7 @@
 }
 
 .cards {
-  max-width: 1158px;
+  // max-width: 1158px;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(4, 270px);
@@ -84,4 +84,10 @@
   &__place {
     margin-bottom: 4px;
   }
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }
