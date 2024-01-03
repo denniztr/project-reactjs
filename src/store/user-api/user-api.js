@@ -16,7 +16,14 @@ export const userApi = createApi({
     getUser: build.query({
       query: () => 'user'
     }),
+    postUserAvatar: build.mutation({
+      query: (formData) => ({
+        url: 'user/avatar',
+        method: 'POST',
+        body: formData,
+      }),
+    }),
   }),
 });
 
-export const { useGetUserListQuery, useGetUserQuery } = userApi;
+export const { useGetUserListQuery, useGetUserQuery, usePostUserAvatarMutation } = userApi;

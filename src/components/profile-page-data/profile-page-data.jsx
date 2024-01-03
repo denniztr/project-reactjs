@@ -1,18 +1,36 @@
 /* eslint-disable react/prop-types */
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../store/slice/user-slice';
+import { usePostUserAvatarMutation, useGetUserQuery } from '../../store/user-api/user-api';
 
 import './profile-page-data.scss';
 
 export const ProfilePageData = ({ data }) => {
   const dispatch = useDispatch();
 
+  const { refetch } = useGetUserQuery();
+  const [postUserAvatar] = usePostUserAvatarMutation();
+  
   // const user = JSON.parse(localStorage.getItem('user'))
   const user = useSelector((state) => state.user.user);
+
   useEffect(() => {
     data && dispatch(setUser(data));
   }, [data, dispatch])
+
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = (file) => {
+    const formData = new FormData()
+    if (file) {
+      formData.append('file', file);
+      postUserAvatar(formData).then((res) => {
+        console.log(res)
+        refetch()
+      });
+    }
+  };
 
   return (
     <>
@@ -22,15 +40,26 @@ export const ProfilePageData = ({ data }) => {
           <h3 className="profile__title title">Настройки профиля</h3>
           <div className="profile__settings settings">
             <div className="settings__left">
-              <div className="settings__img">
+              <div className="settings__img" onClick={() => fileInputRef.current.click()}>
                 <a target="_self">
-                  {/* <img src={`http://localhost:8090/${user.avatar}`} alt="" /> */}
-                  <img src='' alt="" />
+                  {user?.avatar ? <img src={`http://localhost:8090/${user.avatar}`} alt="" /> : <img src='' alt="" /> }
                 </a>
               </div>
-              <a className="settings__change-photo" href="#" target="_self">
+              <input
+                type="file"
+                ref={fileInputRef}
+                style={{ display: 'none' }}
+                onChange={(event) => {
+                  event.preventDefault();
+                  const file = event.target.files?.[0];
+                  if (file) {
+                    handleFileChange(file);
+                  }
+                }}
+              />
+              {/* <label className="settings__change-photo" target="_self">
                 Заменить
-              </a>
+              </label> */}
             </div>
             <div className="settings__right">
               <form className="settings__form" action="#">
