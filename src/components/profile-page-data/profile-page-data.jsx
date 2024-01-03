@@ -57,9 +57,6 @@ export const ProfilePageData = ({ data }) => {
                   }
                 }}
               />
-              {/* <label className="settings__change-photo" target="_self">
-                Заменить
-              </label> */}
             </div>
             <div className="settings__right">
               <form className="settings__form" action="#">

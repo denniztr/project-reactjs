@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useGetAdvByIdQuery } from '../../store/adv-api';
 import { AdvContent, NavigateToMainPage, ReviewsComponent } from '../../components';
+
 import './adv-page.scss';
 
 export const AdvPage = () => {
