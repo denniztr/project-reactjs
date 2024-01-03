@@ -17,7 +17,7 @@ export const AdvPage = () => {
           <AdvContent data={data} isLoading={isLoading}/>
         </div>
       </div>
-      { reviews && <ReviewsComponent id={id}/> }
+      { reviews && <ReviewsComponent id={id} /> }
     </div>
   )
 }

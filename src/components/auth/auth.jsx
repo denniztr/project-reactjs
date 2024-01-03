@@ -1,17 +1,76 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { SlArrowLeft, SlClose } from 'react-icons/sl';
 import SkyproLogoModal from '../../assets/icons/logo_modal.png';
 import { setAuthModal } from '../../store/slice/modal-slice';
+import { usePostLoginMutation, usePostRegisterMutation } from '../../store/auth-api';
 
 import './auth.scss';
 
 export const Authorization = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [postRegister] = usePostRegisterMutation();
+  const [postLogin] = usePostLoginMutation();
+
   const [loginMode, setLoginMode] = useState(false);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [repeatPassword, setRepeatPassword] = useState('')
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [city, setCity] = useState('')
+  const [error, setError] = useState('')
 
   const handleLoginModalChange = () => {
     setLoginMode(!loginMode);
+  };
+
+  const handleRegister = (event) => {
+    event.preventDefault()
+
+    if (!email || !password) {
+      setError("Укажите email/пароль");
+      return;
+    }
+
+    if (password !== repeatPassword) {
+      setError("Пароли не совпадают");
+      return;
+    }
+
+    if (email.length < 3) {
+      setError("Введенный E-mail слишком короткий");
+      return;
+    }
+
+    if (password.length < 6) {
+      setError("Введенный пароль слишком короткий");
+       return;
+    }
+
+    postRegister({ email, password, name, surname, city})
+      .then((res) => {
+        console.log(res.data);
+        setLoginMode(false);
+        setEmail(res.data.email);
+        setPassword(password);
+      });
+  };
+
+  const handleLogin = (event) => {
+    event.preventDefault()
+
+    if (!email || !password) {
+      setError('Не заполнены данные для входа')
+    }
+
+    postLogin({ email, password })
+      .then((res) => {
+        console.log(res)
+      });
   };
 
   return (
@@ -39,6 +98,7 @@ export const Authorization = () => {
               name="login"
               id="loginReg"
               placeholder="email"
+              onChange={(event) => setEmail(event.target.value)}
             />
             <input
               className="modal__input password-first"
@@ -46,6 +106,7 @@ export const Authorization = () => {
               name="password"
               id="passwordFirst"
               placeholder="Пароль"
+              onChange={(event) => setPassword(event.target.value)}
             />
             <input
               className="modal__input password-double"
@@ -53,6 +114,7 @@ export const Authorization = () => {
               name="password"
               id="passwordSecond"
               placeholder="Повторите пароль"
+              onChange={(event) => setRepeatPassword(event.target.value)}
             />
             <input
               className="modal__input first-name"
@@ -60,6 +122,7 @@ export const Authorization = () => {
               name="first-name"
               id="first-name"
               placeholder="Имя (необязательно)"
+              onChange={(event) => setName(event.target.value)}
             />
             <input
               className="modal__input first-last"
@@ -67,6 +130,7 @@ export const Authorization = () => {
               name="first-last"
               id="first-last"
               placeholder="Фамилия (необязательно)"
+              onChange={(event) => setSurname(event.target.value)}
             />
             <input
               className="modal__input city"
@@ -74,8 +138,10 @@ export const Authorization = () => {
               name="city"
               id="city"
               placeholder="Город (необязательно)"
+              onChange={(event) => setCity(event.target.value)}
             />
-            <button className="modal__btn-signup-ent" id="SignUpEnter">
+            <p>{error}</p>
+            <button className="modal__btn-signup-ent" id="SignUpEnter" onClick={(event) => handleRegister(event)}>
               <a>Зарегистрироваться</a>
             </button>
           </form>
@@ -108,6 +174,7 @@ export const Authorization = () => {
               name="login"
               id="formlogin"
               placeholder="email"
+              onChange={(event) => setEmail(event.target.value)}
             />
             <input
               className="modal__input password"
@@ -115,8 +182,9 @@ export const Authorization = () => {
               name="password"
               id="formpassword"
               placeholder="Пароль"
+              onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="modal__btn-enter" id="btnEnter">
+            <button className="modal__btn-enter" id="btnEnter" onClick={(event) => handleLogin(event)}>
               <a>Войти</a>
             </button>
             <button

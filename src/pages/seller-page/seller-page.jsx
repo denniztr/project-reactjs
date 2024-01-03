@@ -22,7 +22,7 @@ export const SellerPage = () => {
             <NavigateToMainPage />
             { isLoading ? 'Загрузка... ' : <SellerProfileData seller={seller} /> }
           </div>
-          <div className="main__content"><h3>КАРТОЧКИ</h3></div>
+          <div className="main__content"><h3>КАРТОЧКИ ПРОДАВЦА ЗДЕСЬ</h3></div>
         </div>
       </main>
     </div>
