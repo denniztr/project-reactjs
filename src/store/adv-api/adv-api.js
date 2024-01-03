@@ -9,7 +9,23 @@ export const advApi = createApi({
     getAdv: build.query({
       query: () => 'ads',
     }),
+    getAdvById: build.query({
+      query: (id) => ({
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        url: `ads/${id}`,
+      }) 
+    }),
+    getReviews: build.query({
+      query: (id) => ({
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        url: `ads/${id}/comments`,
+      }),
+    }),
   }),
 });
 
-export const { useGetAdvQuery } = advApi;
+export const { useGetAdvQuery, useGetAdvByIdQuery, useGetReviewsQuery } = advApi;
