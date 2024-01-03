@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useGetReviewsQuery } from '../../store/adv-api';
+import { useGetReviewsQuery, usePostReviewMutation } from '../../store/adv-api';
 import { setReviewsModal } from '../../store/slice/modal-slice';
 import { ReviewsList } from '../reviews-list';
 
@@ -8,7 +9,21 @@ import './reviews.scss';
 
 export const ReviewsComponent = ({ id }) => {
   const dispatch = useDispatch();
-  const { data, isLoading } = useGetReviewsQuery(id);
+
+  const { data, isLoading, refetch } = useGetReviewsQuery(id);
+
+  const [postReview] = usePostReviewMutation();
+
+  const [text, setText] = useState('');
+
+
+  const handlePostReview = (event) => {
+    event.preventDefault()
+    postReview({ id: id, body: { text: text }})
+      .then(() => {
+        refetch()
+      })
+  };
 
   return (
     <div className="modal-overlay">
@@ -35,11 +50,13 @@ export const ReviewsComponent = ({ id }) => {
                     cols="auto"
                     rows="5"
                     placeholder="Напишите отзыв"
+                    onChange={(event) => setText(event.target.value)}
                   ></textarea>
                 </div>
                 <button
                   className="form-newArt__btn-pub btn-hov02"
                   id="btnPublish"
+                  onClick={(event) => handlePostReview(event)}
                 >
                   Опубликовать
                 </button>

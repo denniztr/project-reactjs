@@ -1,11 +1,30 @@
-
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { setAdvModal } from '../../store/slice/modal-slice';
+import { usePostAdvMutation } from '../../store/adv-api';
+import { useGetAdvQuery } from '../../store/adv-api';
 
 import './new-adv-modal.scss'
 
 export const NewAdvModal = () => {
   const dispatch = useDispatch();
+
+  const [postAdv] = usePostAdvMutation();
+  const { refetch } = useGetAdvQuery();
+
+  const [title, setTitle] = useState(null);
+  const [description, setDescription] = useState(null);
+  const [price, setPrice] = useState(null);
+
+  const handlePostAdv = (event) => {
+    event.preventDefault();
+    postAdv({ title, description, price})
+    .then(() => {
+      dispatch(setAdvModal(false));
+      refetch();
+    });
+  };
+
   return (
     <div className="modal-overlay">
       <div className="container-bg">
@@ -28,6 +47,7 @@ export const NewAdvModal = () => {
                   name="name"
                   id="formName"
                   placeholder="Введите название"
+                  onChange={(event) => setTitle(event.target.value)}
                 />
               </div>
               <div className="form-newArt__block">
@@ -39,6 +59,7 @@ export const NewAdvModal = () => {
                   cols="auto"
                   rows="10"
                   placeholder="Введите описание"
+                  onChange={(event) => setDescription(event.target.value)}
                 ></textarea>
               </div>
               <div className="form-newArt__block">
@@ -78,12 +99,14 @@ export const NewAdvModal = () => {
                   type="text"
                   name="price"
                   id="formName"
+                  onChange={(event) => setPrice(event.target.value)}
                 />
                 <div className="form-newArt__input-price-cover"></div>
               </div>
               <button
                 className="form-newArt__btn-pub btn-hov02"
                 id="btnPublish"
+                onClick={(event) => handlePostAdv(event)}
               >
                 Опубликовать
               </button>

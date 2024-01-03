@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
-import { formatRelative, parseISO } from 'date-fns';
+import { formatDistance } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 import './cards.scss';
@@ -29,7 +29,7 @@ export const CardsContent = ({ data, isLoading }) => {
                 </a>
                 <p className="card__price">{card.price} ₽</p>
                 <p className="card__place">{card.user.city}</p>
-                <p className="card__date">{formatRelative(parseISO(card.created_on), new Date(), { locale: ru })}</p>
+                <p className="card__date">{formatDistance(new Date(card.created_on), Date.now(), { locale: ru })} назад</p>
               </div>
             </div>
           </div>
