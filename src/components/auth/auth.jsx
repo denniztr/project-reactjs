@@ -5,7 +5,7 @@ import { SlArrowLeft, SlClose } from 'react-icons/sl';
 import SkyproLogoModal from '../../assets/icons/logo_modal.png';
 import { setAuthModal } from '../../store/slice/modal-slice';
 import { usePostLoginMutation, usePostRegisterMutation } from '../../store/auth-api';
-
+import { setAccessToken } from '../../store/slice/user-slice';
 import './auth.scss';
 
 export const Authorization = () => {
@@ -69,8 +69,11 @@ export const Authorization = () => {
 
     postLogin({ email, password })
       .then((res) => {
-        console.log(res)
-      });
+        dispatch(setAccessToken(res.data.access_token));
+        localStorage.setItem('refresh_token', res.data.refresh_token);
+        dispatch(setAuthModal(false));
+        navigate('/profile');
+      })
   };
 
   return (

@@ -29,7 +29,17 @@ export const authApi = createApi({
         },
       }),
     }),
+    updateToken: build.mutation({
+      query: (body) => ({
+        url: 'auth/login',
+        method: 'PUT',
+        body: {
+          access_token: body.access_token,
+          refresh_token: body.refresh_token,
+        },
+      }),
+    }),
   }),
 });
 
-export const { usePostRegisterMutation, usePostLoginMutation } = authApi;
+export const { usePostRegisterMutation, usePostLoginMutation, useUpdateTokenMutation } = authApi;

@@ -1,17 +1,31 @@
+/* eslint-disable react/prop-types */
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUser } from '../../store/slice/user-slice';
+
 import './profile-page-data.scss';
 
-export const ProfilePageData = () => {
+export const ProfilePageData = ({ data }) => {
+  const dispatch = useDispatch();
+
+  // const user = JSON.parse(localStorage.getItem('user'))
+  const user = useSelector((state) => state.user.user);
+  useEffect(() => {
+    data && dispatch(setUser(data));
+  }, [data, dispatch])
+
   return (
     <>
-      <h2 className="main__h2">Здравствуйте, Антон!</h2>
+      <h2 className="main__h2">Здравствуйте, {user?.name}!</h2>
       <div className="main__profile profile">
         <div className="profile__content">
           <h3 className="profile__title title">Настройки профиля</h3>
           <div className="profile__settings settings">
             <div className="settings__left">
               <div className="settings__img">
-                <a href="#" target="_self">
-                  <img src="#" alt="" />
+                <a target="_self">
+                  {/* <img src={`http://localhost:8090/${user.avatar}`} alt="" /> */}
+                  <img src='' alt="" />
                 </a>
               </div>
               <a className="settings__change-photo" href="#" target="_self">
@@ -27,8 +41,8 @@ export const ProfilePageData = () => {
                     id="settings-fname"
                     name="fname"
                     type="text"
-                    value="Ан"
-                    placeholder=""
+                    // defaultValue="Ан"
+                    placeholder={user?.name}
                   />
                 </div>
                 <div className="settings__div">
@@ -38,8 +52,8 @@ export const ProfilePageData = () => {
                     id="settings-lname"
                     name="lname"
                     type="text"
-                    value="Городецкий"
-                    placeholder=""
+                    // defaultValue={user.city}
+                    placeholder={user?.surname}
                   />
                 </div>
                 <div className="settings__div">
@@ -49,8 +63,8 @@ export const ProfilePageData = () => {
                     id="settings-city"
                     name="city"
                     type="text"
-                    value="Санкт-Петербург"
-                    placeholder=""
+                    // defaultValue="Санкт-Петербург"
+                    placeholder={user?.city}
                   />
                 </div>
                 <div className="settings__div">
@@ -60,8 +74,8 @@ export const ProfilePageData = () => {
                     id="settings-phone"
                     name="phone"
                     type="tel"
-                    value="89161234567"
-                    placeholder="+79161234567"
+                    // defaultValue="89161234567"
+                    placeholder={user?.phone}
                   />
                 </div>
                 <button className="settings__btn btn-hov02" id="settings-btn">
