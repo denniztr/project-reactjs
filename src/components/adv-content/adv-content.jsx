@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
 import { formatDistance } from 'date-fns';
@@ -9,6 +10,7 @@ import './adv-content.scss';
 
 export const AdvContent = ({ data, isLoading }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [phone, showPone] = useState(false);
 
   return (
@@ -60,7 +62,7 @@ export const AdvContent = ({ data, isLoading }) => {
               { phone ? (<span>{data.user.phone}</span>) : '' }
             </button>
             <div className="article__author author">
-              <div className="author__img">
+              <div className="author__img" onClick={() => navigate(`/seller/${data.user.id}`)}>
                 <img src={`http://localhost:8090/${data.user.avatar}`} alt="" />
               </div>
               <div className="author__cont">
