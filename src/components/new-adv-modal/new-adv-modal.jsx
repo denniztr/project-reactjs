@@ -1,8 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { setAdvModal } from '../../store/slice/modal-slice';
-import { usePostAdvMutation } from '../../store/adv-api';
-import { useGetAdvQuery } from '../../store/adv-api';
+import { usePostAdvMutation, useGetAdvQuery } from '../../store/adv-api';
 
 import './new-adv-modal.scss'
 
@@ -23,6 +22,16 @@ export const NewAdvModal = () => {
       dispatch(setAdvModal(false));
       refetch();
     });
+  };
+
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = (file) => {
+    const formData = new FormData()
+    if (file) {
+      formData.append('file', file);
+      console.log(file)
+    }
   };
 
   return (
@@ -67,10 +76,22 @@ export const NewAdvModal = () => {
                   Фотографии товара<span>не более 5 фотографий</span>
                 </p>
                 <div className="form-newArt__bar-img">
-                  <div className="form-newArt__img">
+                  <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
+                    <input 
+                      type="file" 
+                      id="upload_photo" 
+                      ref={fileInputRef}
+                      style={{ display: 'none' }}
+                      onChange={(event) => {
+                        event.preventDefault();
+                        const file = event.target.files?.[0];
+                        if (file) {
+                          handleFileChange(file);
+                        }
+                      }}
+                      />
                     <img src="" alt="" />
-                    <div className="form-newArt__img-cover" type="file">
-                      {/* <input type="file" id="upload_photo" accept="image/*" /> */}
+                    <div className="form-newArt__img-cover">
                     </div>
                   </div>
 

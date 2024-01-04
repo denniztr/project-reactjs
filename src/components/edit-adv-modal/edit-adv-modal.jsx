@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux'
 import { setEditModal } from '../../store/slice/modal-slice';
-import { usePatchAdvMutation } from '../../store/adv-api';
+import { usePatchAdvMutation, usePostImageMutation } from '../../store/adv-api';
+import { MdOutlineDelete } from "react-icons/md";
+
 import './edit-adv-modal.scss'
 
 export const EditAdvertisementComponent = ({ data, refetch }) => {
@@ -12,6 +14,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
   const [price, setPrice] = useState(data.price)
 
   const [patchAdv] = usePatchAdvMutation();
+  const [postImage] = usePostImageMutation();
 
   const handleSaveChangesClick = (event) => {
     event.preventDefault();
@@ -23,6 +26,21 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
     })
   };
 
+  const fileInputRef = useRef(null);
+
+  const handleFileChange = (file) => {
+    const formData = new FormData()
+    if (file) {
+      formData.append('file', file);
+      console.log(formData)
+      postImage({ id: data.id, formData})
+      .then((res) => {
+        console.log(res)
+        refetch();
+      })
+    }
+  };
+console.log(data)
   return (
     <div className="modal-overlay">
     <div className="container-bg">
@@ -67,28 +85,95 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                 Фотографии товара<span>не более 5 фотографий</span>
               </p>
               <div className="form-newArt__bar-img">
-                <div className="form-newArt__img">
-                  <img src="" alt="" />
-                  <div className="form-newArt__img-cover" type="file">
-                    {/* <input type="file" id="upload_photo" accept="image/*" /> */}
-                  </div>
+
+                <div className="form-newArt__img"  onClick={() => fileInputRef.current.click()}>
+                <input 
+                      type="file" 
+                      id="upload_photo" 
+                      ref={fileInputRef}
+                      style={{ display: 'none' }}
+                      onChange={(event) => {
+                        event.preventDefault();
+                        const file = event.target.files?.[0];
+                        if (file) {
+                          handleFileChange(file);
+                        }
+                      }}
+                      />
+                  <img src={`http://localhost:8090/${data.images[0]?.url}`} alt="" />
+                  <div className="form-newArt__img-cover"></div>
                 </div>
 
-                <div className="form-newArt__img">
-                  <img src="" alt="" />
+                <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
+                <input 
+                      type="file" 
+                      id="upload_photo" 
+                      ref={fileInputRef}
+                      style={{ display: 'none' }}
+                      onChange={(event) => {
+                        event.preventDefault();
+                        const file = event.target.files?.[0];
+                        if (file) {
+                          handleFileChange(file);
+                        }
+                      }}
+                      />
+                  <img src={`http://localhost:8090/${data.images[1]?.url}`} alt="" />
                   <div className="form-newArt__img-cover"></div>
                 </div>
-                <div className="form-newArt__img">
+
+                <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
                   <div className="form-newArt__img-cover"></div>
-                  <img src="" alt="" />
+                  <input 
+                      type="file" 
+                      id="upload_photo" 
+                      ref={fileInputRef}
+                      style={{ display: 'none' }}
+                      onChange={(event) => {
+                        event.preventDefault();
+                        const file = event.target.files?.[0];
+                        if (file) {
+                          handleFileChange(file);
+                        }
+                      }}
+                      />
+                  <img src={`http://localhost:8090/${data.images[2]?.url}`} alt="" />
                 </div>
-                <div className="form-newArt__img">
+
+                <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
                   <div className="form-newArt__img-cover"></div>
-                  <img src="" alt="" />
+                  <input 
+                      type="file" 
+                      id="upload_photo" 
+                      ref={fileInputRef}
+                      style={{ display: 'none' }}
+                      onChange={(event) => {
+                        event.preventDefault();
+                        const file = event.target.files?.[0];
+                        if (file) {
+                          handleFileChange(file);
+                        }
+                      }}
+                      />
+                  <img src={`http://localhost:8090/${data.images[3]?.url}`} alt="" />
                 </div>
-                <div className="form-newArt__img">
+
+                <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
                   <div className="form-newArt__img-cover"></div>
-                  <img src="" alt="" />
+                  <input 
+                      type="file" 
+                      id="upload_photo" 
+                      ref={fileInputRef}
+                      style={{ display: 'none' }}
+                      onChange={(event) => {
+                        event.preventDefault();
+                        const file = event.target.files?.[0];
+                        if (file) {
+                          handleFileChange(file);
+                        }
+                      }}
+                      />
+                  <img src={`http://localhost:8090/${data.images[4]?.url}`} alt="" />
                 </div>
               </div>
             </div>

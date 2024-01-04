@@ -75,6 +75,20 @@ export const advApi = createApi({
         },
       }),
     }),
+    postImage: build.mutation({
+      query: ({ id, formData }) => ({
+        url: `ads/${id}/image`,
+        method: 'POST',
+        body: formData,
+      }),
+    }),
+    deleteImage: build.mutation({
+      query: ({ id, file_url }) => ({
+        url: `ads/${id}/image`,
+        method: 'DELETE',
+        
+      }),
+    }),
   }),
 });
 
@@ -86,4 +100,5 @@ export const {
   usePostAdvMutation,
   useDeleteAdvMutation,
   usePatchAdvMutation,
+  usePostImageMutation,
 } = advApi;
