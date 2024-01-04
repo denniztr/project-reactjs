@@ -40,7 +40,7 @@ export const SellerProfileData = ({ seller }) => {
           </div>
         </div>
       </div>
-      <h3 className="main__title">Товары продавца</h3>
+      <h3 className="main__title title">Товары продавца</h3>
     </>
   );
 };
