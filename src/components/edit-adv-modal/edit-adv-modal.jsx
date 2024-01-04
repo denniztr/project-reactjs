@@ -3,7 +3,6 @@ import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux'
 import { setEditModal } from '../../store/slice/modal-slice';
 import { usePatchAdvMutation, usePostImageMutation } from '../../store/adv-api';
-import { MdOutlineDelete } from "react-icons/md";
 
 import './edit-adv-modal.scss'
 
@@ -40,7 +39,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
       })
     }
   };
-console.log(data)
+
   return (
     <div className="modal-overlay">
     <div className="container-bg">

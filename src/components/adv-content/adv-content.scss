@@ -24,12 +24,13 @@
     height: 480px;
     background-color: rgb(240, 240, 240);
     margin: 0 5px;
-
+    position: relative;
+    
     & img {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -58,9 +59,9 @@
 
     & img {
       width: 100%;
-      height: auto;
+      height: 100%;
       display: block;
-      object-fit: cover;
+      object-fit: contain;
     }
   }
 
@@ -167,4 +168,12 @@
     line-height: 32px;
     color: rgb(95, 95, 95);
   }
+}
+
+.AiOutlinePicture {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color:rgb(143, 143, 143);
 }

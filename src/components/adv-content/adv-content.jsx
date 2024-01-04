@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LiaTruckLoadingSolid } from 'react-icons/lia';
+import { AiOutlinePicture } from "react-icons/ai";
 import { formatDistance } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { setReviewsModal, setEditModal } from '../../store/slice/modal-slice';
@@ -13,7 +14,9 @@ export const AdvContent = ({ data, isLoading }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [phone, showPone] = useState(false);
+  const [selectedImage, setSelectedImage] = useState('');
 
+  console.log(selectedImage)
   const user = useSelector((state) => state.user.user);
   const {refetch} = useGetAdvQuery();
   const [deleteAdv] = useDeleteAdvMutation();
@@ -37,15 +40,24 @@ export const AdvContent = ({ data, isLoading }) => {
             <div className="article__left">
               <div className="article__fill-img">
                 <div className="article__img">
-                  <img
-                    src={`http://localhost:8090/${data.images[0]?.url}`}
+                  { data.images[0]?.url ? (
+                    <img
+                    src={`http://localhost:8090/${data.images[0]?.url}` || selectedImage}
                     alt=""
                   />
+                  ) : (
+                    <AiOutlinePicture size={50} className='AiOutlinePicture'/>
+                  ) }
                 </div>
                 <div className="article__img-bar">
-                  {[...Array(6)].map((_, index) => (
+                  {/* {[...Array(6)].map((_, index) => (
                     <div key={index} className="article__img-bar-div">
                       <img src="" alt="" />
+                    </div>
+                  ))} */}
+                  {data.images?.map((el, index) => (
+                    <div key={index} className="article__img-bar-div" onClick={() => setSelectedImage(el.url)}>
+                      <img src={`http://localhost:8090/${el.url}`} alt="" />
                     </div>
                   ))}
                 </div>
@@ -102,11 +114,6 @@ export const AdvContent = ({ data, isLoading }) => {
                     {phone ? <span>{data?.user.phone}</span> : ''}
                   </button>
                 )}
-                {/* <button className="article__btn btn-hov02" onClick={() => showPone(!phone)}>
-              Показать телефон 
-              { phone ? (<span>{data.user.phone}</span>) : '' }
-            </button> */}
-
                 <div className="article__author author">
                   <div
                     className="author__img"

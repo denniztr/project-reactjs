@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
+import { AiOutlinePicture } from "react-icons/ai";
 import { formatDistance } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
@@ -20,7 +21,13 @@ export const CardsContent = ({ data, isLoading }) => {
             <div className="cards__card card" onClick={() => navigate(`/adv/${card.id}`)}>
               <a>
                 <div className="card__image">
-                  <img alt="" src={`http://localhost:8090/${card.images[0]?.url}`}/>
+                  { card.images[0]?.url ? (
+                    <img alt='' src={`http://localhost:8090/${card.images[0]?.url}`}/>
+                  ) : (
+                    <AiOutlinePicture size={50} className="AiOutlinePicture"/>
+                  ) }
+                  {/* <img alt='' src={`http://localhost:8090/${card.images[0]?.url}`}/> */}
+                  
                 </div>
               </a>
               <div className="card__content">

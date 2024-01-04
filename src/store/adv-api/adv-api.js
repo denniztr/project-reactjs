@@ -86,7 +86,14 @@ export const advApi = createApi({
       query: ({ id, file_url }) => ({
         url: `ads/${id}/image`,
         method: 'DELETE',
-        
+      }),
+    }),
+    getMyAdv: build.query({
+      query: () => 'ads/me',
+    }),
+    getUserAdv: build.query({
+      query: (id) => ({
+        url: `ads?user_id=${id}`
       }),
     }),
   }),
@@ -101,4 +108,6 @@ export const {
   useDeleteAdvMutation,
   usePatchAdvMutation,
   usePostImageMutation,
+  useGetMyAdvQuery,
+  useGetUserAdvQuery,
 } = advApi;
