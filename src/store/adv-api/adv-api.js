@@ -19,7 +19,7 @@ export const advApi = createApi({
           'Content-Type': 'application/json',
         },
         url: `ads/${id}`,
-      }) 
+      }),
     }),
     postAdv: build.mutation({
       query: (body) => ({
@@ -28,6 +28,26 @@ export const advApi = createApi({
         },
         url: 'adstext',
         method: 'POST',
+        body: {
+          title: body.title,
+          description: body.description,
+          price: body.price,
+        },
+      }),
+    }),
+    deleteAdv: build.mutation({
+      query: (id) => ({
+        url: `ads/${id}`,
+        method: 'DELETE',
+      }),
+    }),
+    patchAdv: build.mutation({
+      query: ({ id, body }) => ({
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        url: `ads/${id}`,
+        method: 'PATCH',
         body: {
           title: body.title,
           description: body.description,
@@ -50,7 +70,7 @@ export const advApi = createApi({
         },
         url: `ads/${id}/comments`,
         method: 'POST',
-        body:{
+        body: {
           text: body.text,
         },
       }),
@@ -58,4 +78,12 @@ export const advApi = createApi({
   }),
 });
 
-export const { useGetAdvQuery, useGetAdvByIdQuery, useGetReviewsQuery, usePostReviewMutation, usePostAdvMutation } = advApi;
+export const {
+  useGetAdvQuery,
+  useGetAdvByIdQuery,
+  useGetReviewsQuery,
+  usePostReviewMutation,
+  usePostAdvMutation,
+  useDeleteAdvMutation,
+  usePatchAdvMutation,
+} = advApi;

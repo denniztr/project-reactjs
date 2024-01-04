@@ -1,19 +1,26 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../store/slice/user-slice';
-import { usePostUserAvatarMutation, useGetUserQuery } from '../../store/user-api/user-api';
+import { usePostUserAvatarMutation, useGetUserQuery, usePatchUserMutation } from '../../store/user-api/user-api';
 
 import './profile-page-data.scss';
 
 export const ProfilePageData = ({ data }) => {
   const dispatch = useDispatch();
+  const user = useSelector((state) => state.user.user);
+
+  const [name, setName] = useState(data.name);
+  const [surname, setSurname] = useState(data.surname);
+  const [city, setCity] = useState(data.city);
+  const [phone, setPhone] = useState(data?.phone);
+
 
   const { refetch } = useGetUserQuery();
   const [postUserAvatar] = usePostUserAvatarMutation();
-  
+  const [patchUser] = usePatchUserMutation();
   // const user = JSON.parse(localStorage.getItem('user'))
-  const user = useSelector((state) => state.user.user);
+
 
   useEffect(() => {
     data && dispatch(setUser(data));
@@ -31,6 +38,15 @@ export const ProfilePageData = ({ data }) => {
       });
     }
   };
+
+  const handleSaveChangesClick = (event) => {
+    event.preventDefault();
+    patchUser({ name, surname, city, phone})
+    .then((res) => {
+      console.log(res)
+      refetch()
+    })
+  }
 
   return (
     <>
@@ -67,8 +83,9 @@ export const ProfilePageData = ({ data }) => {
                     id="settings-fname"
                     name="fname"
                     type="text"
-                    // defaultValue="Ан"
-                    placeholder={user?.name}
+                    defaultValue={user?.name}
+                    // placeholder={user?.name}
+                    onChange={(event) => setName(event.target.value)}
                   />
                 </div>
                 <div className="settings__div">
@@ -78,8 +95,9 @@ export const ProfilePageData = ({ data }) => {
                     id="settings-lname"
                     name="lname"
                     type="text"
-                    // defaultValue={user.city}
-                    placeholder={user?.surname}
+                    defaultValue={user?.surname}
+                    // placeholder={user?.surname}
+                    onChange={(event) => setSurname(event.target.value)}
                   />
                 </div>
                 <div className="settings__div">
@@ -89,8 +107,9 @@ export const ProfilePageData = ({ data }) => {
                     id="settings-city"
                     name="city"
                     type="text"
-                    // defaultValue="Санкт-Петербург"
-                    placeholder={user?.city}
+                    defaultValue={user?.city}
+                    // placeholder={user?.city}
+                    onChange={(event) => setCity(event.target.value)}
                   />
                 </div>
                 <div className="settings__div">
@@ -100,11 +119,12 @@ export const ProfilePageData = ({ data }) => {
                     id="settings-phone"
                     name="phone"
                     type="tel"
-                    // defaultValue="89161234567"
-                    placeholder={user?.phone}
+                    defaultValue={user?.phone}
+                    // placeholder={user?.phone}
+                    onChange={(event) => setPhone(event.target.value)}
                   />
                 </div>
-                <button className="settings__btn btn-hov02" id="settings-btn">
+                <button className="settings__btn btn-hov02" id="settings-btn" onClick={(event) => handleSaveChangesClick(event)}>
                   Сохранить
                 </button>
               </form>

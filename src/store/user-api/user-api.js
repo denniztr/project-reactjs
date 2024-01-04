@@ -14,7 +14,7 @@ export const userApi = createApi({
       query: () => 'user/all',
     }),
     getUser: build.query({
-      query: () => 'user'
+      query: () => 'user',
     }),
     postUserAvatar: build.mutation({
       query: (formData) => ({
@@ -23,7 +23,24 @@ export const userApi = createApi({
         body: formData,
       }),
     }),
+    patchUser: build.mutation({
+      query: (body) => ({
+        url: 'user',
+        method: `PATCH`,
+        body: {
+          name: body.name,
+          surname: body.surname,
+          city: body.city,
+          phone: body.phone,
+        },
+      }),
+    }),
   }),
 });
 
-export const { useGetUserListQuery, useGetUserQuery, usePostUserAvatarMutation } = userApi;
+export const {
+  useGetUserListQuery,
+  useGetUserQuery,
+  usePostUserAvatarMutation,
+  usePatchUserMutation,
+} = userApi;

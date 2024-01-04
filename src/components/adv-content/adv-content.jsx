@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LiaTruckLoadingSolid } from 'react-icons/lia';
 import { formatDistance } from 'date-fns';
 import { ru } from 'date-fns/locale';
-import { setReviewsModal } from '../../store/slice/modal-slice';
+import { setReviewsModal, setEditModal } from '../../store/slice/modal-slice';
+import { useDeleteAdvMutation, useGetAdvQuery } from '../../store/adv-api';
 import './adv-content.scss';
 
 export const AdvContent = ({ data, isLoading }) => {
@@ -14,7 +15,17 @@ export const AdvContent = ({ data, isLoading }) => {
   const [phone, showPone] = useState(false);
 
   const user = useSelector((state) => state.user.user);
+  const {refetch} = useGetAdvQuery();
+  const [deleteAdv] = useDeleteAdvMutation();
 
+  const handleDeleteAdv = async () => {
+    deleteAdv(data.id)
+      .unwrap()
+      .then(() => {
+        navigate('/');
+        refetch();
+      });
+  };
 
   return (
     <>
@@ -70,15 +81,14 @@ export const AdvContent = ({ data, isLoading }) => {
                   </a>
                 </div>
                 <p className="article__price">{data.price} ₽</p>
-                {data && data.user_id === Number(user.id) ? (
-                  <div className='article__buttons'>
-                    <button
-                      className="article__btn btn-hov02"
-                    >
+                {data && data.user_id === Number(user?.id) ? (
+                  <div className="article__buttons">
+                    <button className="article__btn btn-hov02" onClick={() => dispatch(setEditModal())}>
                       Редактировать
                     </button>
                     <button
                       className="article__btn btn-hov02"
+                      onClick={handleDeleteAdv}
                     >
                       Снять с публикации
                     </button>
@@ -89,7 +99,7 @@ export const AdvContent = ({ data, isLoading }) => {
                     onClick={() => showPone(!phone)}
                   >
                     Показать телефон
-                    {phone ? <span>{data.user.phone}</span> : ''}
+                    {phone ? <span>{data?.user.phone}</span> : ''}
                   </button>
                 )}
                 {/* <button className="article__btn btn-hov02" onClick={() => showPone(!phone)}>
