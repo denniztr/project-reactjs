@@ -14,9 +14,10 @@ export const AdvContent = ({ data, isLoading }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [phone, showPone] = useState(false);
-  const [selectedImage, setSelectedImage] = useState('');
+  const [selectedImage, setSelectedImage] = useState(data?.images[0]?.url);
 
   console.log(selectedImage)
+
   const user = useSelector((state) => state.user.user);
   const {refetch} = useGetAdvQuery();
   const [deleteAdv] = useDeleteAdvMutation();
@@ -43,7 +44,7 @@ export const AdvContent = ({ data, isLoading }) => {
                   { data.images[0]?.url ? (
                     <img
                     src={`http://localhost:8090/${data.images[0]?.url}` || selectedImage}
-                    alt=""
+                    // src={selectedImage}
                   />
                   ) : (
                     <AiOutlinePicture size={50} className='AiOutlinePicture'/>
@@ -62,7 +63,7 @@ export const AdvContent = ({ data, isLoading }) => {
                   ))}
                 </div>
                 <div className="article__img-bar-mob img-bar-mob">
-                  {[...Array(5)].map((_, index) => (
+                  {data.images?.map((el, index) => (
                     <div
                       key={index}
                       className={`img-bar-mob__circle${
@@ -89,7 +90,7 @@ export const AdvContent = ({ data, isLoading }) => {
                     target="_blank"
                     onClick={() => dispatch(setReviewsModal())}
                   >
-                    23 отзыва
+                    Отзывы
                   </a>
                 </div>
                 <p className="article__price">{data.price} ₽</p>

@@ -80,6 +80,55 @@
   }
 }
 
+.main {
+
+  &__container {
+      max-width: 1178px;
+      margin: 0 auto;
+      padding: 0px 10px 79px;
+  }
+  &__center-block{
+      margin: 0 auto;
+  }
+  &__menu {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      padding: 11px 0;        
+      width: 100%;        
+      padding: 31px 10px 64px;
+  }
+
+
+  &__h2 {
+      font-style: normal;
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 42px;
+      color: #000000;
+      margin-bottom: 30px;
+  }
+  &__profile-sell {
+      width: 100%;
+      padding: 0 0 70px;
+  }
+
+  &__title {
+      margin-bottom: 20px;
+      font-size: 32px;
+      line-height: 40px;
+      font-weight: 500;
+      color: #000000;
+  }
+  &__content {
+      width: 100%;
+      margin: 0 auto;
+  }
+
+
+}
+
 @media screen and (max-width: 890px) {
   .profile-sell {
     &__content {
@@ -94,6 +143,37 @@
 }
 
 @media screen and (max-width: 580px) {
+  .main {
+    &__h2 {
+      font-size: 24px;
+      line-height: 29px;
+      color: #000000;
+      padding: 0 0 0 26px;
+      margin-bottom: 20px;
+
+      position: relative;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        background-color: transparent;
+        border-top: 2px solid #000000;
+        border-left: 2px solid #000000;
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 9px;
+        left: 0;
+        cursor: pointer;
+      }
+    }
+
+    .menu {
+      display: none;
+    }
+  }
+
   .profile-sell {
     &__content {
       max-width: 100%;

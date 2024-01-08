@@ -6,7 +6,7 @@ export const SellerProfileData = ({ seller }) => {
   return (
     <>
       <h2 className="main__h2">Профиль продавца</h2>
-      <div className="main__profile-sell profile-sell">
+      <div className="main__profile-sell">
         <div className="profile-sell__content">
           <div className="profile-sell__seller seller">
             <div className="seller__left">

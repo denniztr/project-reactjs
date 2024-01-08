@@ -77,7 +77,7 @@ export const Authorization = () => {
   };
 
   return (
-    <div className="modal-overlay">
+    <div className="modal-overlay"> 
       {loginMode ? (
         <div className="modal__block">
           <SlArrowLeft
