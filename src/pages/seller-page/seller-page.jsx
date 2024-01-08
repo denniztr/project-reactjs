@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SellerProfileData, NavigateToMainPage } from '../../components/index'
+import { SellerProfileData, NavigateToMainPage, CardsContent } from '../../components/index'
 import { useGetUserListQuery } from '../../store/user-api';
+import { useGetUserAdvQuery } from '../../store/adv-api';
 import './seller-page.scss';
 
 export const SellerPage = () => {
   const [seller, setSeller] = useState(null);
   const { id } = useParams();
   const { data, isLoading } = useGetUserListQuery();
-  
+  const { data: userAdv, isLoading: userAdvLoading } = useGetUserAdvQuery(id);
+
   useEffect(() => {
     setSeller(data?.find((user) => user.id === Number(id)))
   }, [data, id])
@@ -22,7 +24,9 @@ export const SellerPage = () => {
             <NavigateToMainPage />
             { isLoading ? 'Загрузка... ' : <SellerProfileData seller={seller} /> }
           </div>
-          <div className="main__content"><h3>КАРТОЧКИ ПРОДАВЦА ЗДЕСЬ</h3></div>
+          <div className="main__content">
+            <CardsContent data={userAdv} isLoading={userAdvLoading} />
+          </div>
         </div>
       </main>
     </div>

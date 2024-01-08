@@ -5,7 +5,7 @@ import './main-page-button.scss';
 
 export const NavigateToMainPage = () => {
   return (
-    <div className="main__container">
+    //<div className="main__container">
     <div className='main__menu menu'>
       <a className='menu__logo-link' target='_blank'>
         <img className='menu__logo-img' src={SkyproLogo} alt="logo" />
@@ -18,6 +18,6 @@ export const NavigateToMainPage = () => {
         </Link>
       </form>
     </div>
-  </div>
+  //</div>
   )
 }

@@ -1,4 +1,5 @@
 import SkyproLogo from '../../assets/icons/logo.png'
+import SkyproLogoMobile from '../../assets/icons/logo-mob.png'
 import './search-query.scss';
 
 export const SearchQuery = () => {
@@ -8,7 +9,7 @@ export const SearchQuery = () => {
         <img className="search__logo-img" alt="logo" src={SkyproLogo} />
       </a>
       <a className="search__logo-mob-link" target="_blank">
-        <img className="search__logo-mob-img" alt="logo"/>
+        <img className="search__logo-mob-img" alt="logo" src={SkyproLogoMobile} />
       </a>
       <form className="search__form" action="#">
         <input

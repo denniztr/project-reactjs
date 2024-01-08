@@ -1,7 +1,8 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
 import { LiaTruckLoadingSolid } from "react-icons/lia";
-import { formatRelative, parseISO } from 'date-fns';
+import { AiOutlinePicture } from "react-icons/ai";
+import { formatDistance } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
 import './cards.scss';
@@ -20,7 +21,13 @@ export const CardsContent = ({ data, isLoading }) => {
             <div className="cards__card card" onClick={() => navigate(`/adv/${card.id}`)}>
               <a>
                 <div className="card__image">
-                  <img alt="" src={`http://localhost:8090/${card.images[0]?.url}`}/>
+                  { card.images[0]?.url ? (
+                    <img alt='' src={`http://localhost:8090/${card.images[0]?.url}`}/>
+                  ) : (
+                    <AiOutlinePicture size={50} className="AiOutlinePicture"/>
+                  ) }
+                  {/* <img alt='' src={`http://localhost:8090/${card.images[0]?.url}`}/> */}
+                  
                 </div>
               </a>
               <div className="card__content">
@@ -29,7 +36,7 @@ export const CardsContent = ({ data, isLoading }) => {
                 </a>
                 <p className="card__price">{card.price} ₽</p>
                 <p className="card__place">{card.user.city}</p>
-                <p className="card__date">{formatRelative(parseISO(card.created_on), new Date(), { locale: ru })}</p>
+                <p className="card__date">{formatDistance(new Date(card.created_on), Date.now(), { locale: ru })} назад</p>
               </div>
             </div>
           </div>

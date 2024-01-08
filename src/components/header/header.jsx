@@ -2,6 +2,7 @@
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAuthModal, setAdvModal } from '../../store/slice/modal-slice';
+import SkyproLogoMobile from '../../assets/icons/logo-mob.png'
 
 import './header.scss';
 
@@ -10,6 +11,9 @@ export const Header = ({ user }) => {
   // localStorage.clear()
   return (
     <header className="header">
+      <a className="mob-link" target="_blank">
+        <img className="mob-img" alt="logo" src={SkyproLogoMobile} />
+      </a>
       <nav className="header__nav">
         {user ? (
           <>

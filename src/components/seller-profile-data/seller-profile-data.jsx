@@ -6,7 +6,7 @@ export const SellerProfileData = ({ seller }) => {
   return (
     <>
       <h2 className="main__h2">Профиль продавца</h2>
-      <div className="main__profile-sell profile-sell">
+      <div className="main__profile-sell">
         <div className="profile-sell__content">
           <div className="profile-sell__seller seller">
             <div className="seller__left">
@@ -28,8 +28,8 @@ export const SellerProfileData = ({ seller }) => {
               </p>
               <div className="seller__img-mob-block">
                 <div className="seller__img-mob">
-                  <a href="" target="_self">
-                    <img src="" alt="" />
+                  <a target="_self">
+                    <img src={seller && `http://localhost:8090/${seller.avatar}`} alt="" />
                   </a>
                 </div>
               </div>
@@ -40,7 +40,7 @@ export const SellerProfileData = ({ seller }) => {
           </div>
         </div>
       </div>
-      <h3 className="main__title">Товары продавца</h3>
+      <h3 className="main__title title">Товары продавца</h3>
     </>
   );
 };
