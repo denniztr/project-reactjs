@@ -28,8 +28,8 @@ export const SellerProfileData = ({ seller }) => {
               </p>
               <div className="seller__img-mob-block">
                 <div className="seller__img-mob">
-                  <a href="" target="_self">
-                    <img src="" alt="" />
+                  <a target="_self">
+                    <img src={seller && `http://localhost:8090/${seller.avatar}`} alt="" />
                   </a>
                 </div>
               </div>

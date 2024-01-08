@@ -213,8 +213,8 @@
     & img {
       display: block;
       width: 100%;
-      height: auto;
-      object-fit: cover;
+      height: 100%;
+      object-fit: contain;
       z-index: 2;
     }
   }
@@ -274,4 +274,12 @@
 
 .block-price {
   position: relative;
+}
+
+.TiDeleteOutline {
+  position: absolute;
+  top: 90%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color:rgb(255, 0, 0);
 }

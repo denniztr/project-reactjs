@@ -36,3 +36,11 @@
     color: rgb(250, 250, 250);
   }
 }
+
+@media screen and (max-width: 768) {
+  .main {
+    &__menu {
+      display: none;
+    }
+  }
+}

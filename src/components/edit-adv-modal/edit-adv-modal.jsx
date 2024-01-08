@@ -2,6 +2,7 @@
 import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux'
 import { setEditModal } from '../../store/slice/modal-slice';
+import { TiDeleteOutline } from "react-icons/ti";
 import { usePatchAdvMutation, usePostImageMutation } from '../../store/adv-api';
 
 import './edit-adv-modal.scss'
@@ -11,6 +12,8 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
   const [title, setTitle] = useState(data.title)
   const [description, setDescription] = useState(data.description)
   const [price, setPrice] = useState(data.price)
+
+  const [isImage, setIsImage] = useState(null);
 
   const [patchAdv] = usePatchAdvMutation();
   const [postImage] = usePostImageMutation();
@@ -99,7 +102,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                         }
                       }}
                       />
-                  <img src={`http://localhost:8090/${data.images[0]?.url}`} alt="" />
+                  <img src={`http://localhost:8090/${data.images[0]?.url}`} />
                   <div className="form-newArt__img-cover"></div>
                 </div>
 
