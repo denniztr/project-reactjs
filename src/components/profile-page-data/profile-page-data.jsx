@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../../store/slice/user-slice';
 import { usePostUserAvatarMutation, useGetUserQuery, usePatchUserMutation } from '../../store/user-api/user-api';
 
-import './profile-page-data.scss';
+import styles from './profile-page-data.module.scss';
 
 export const ProfilePageData = ({ data }) => {
   const dispatch = useDispatch();
@@ -47,16 +47,18 @@ export const ProfilePageData = ({ data }) => {
       refetch()
     })
   }
-
+  const handleHistoryBackClick = () => {
+    window.history.back()
+  }
   return (
     <>
-      <h2 className="main__h2">Здравствуйте, {user?.name}!</h2>
-      <div className="main__profile profile">
-        <div className="profile__content">
-          <h3 className="profile__title title">Настройки профиля</h3>
-          <div className="profile__settings settings">
-            <div className="settings__left">
-              <div className="settings__img" onClick={() => fileInputRef.current.click()}>
+      <h2 className={styles.main__h2} onClick={handleHistoryBackClick}>Здравствуйте, {user?.name}!</h2>
+      <div className={styles.main__profile}>
+        <div className={styles.profile__content}>
+          <h3 className={styles.profile__title}>Настройки профиля</h3>
+          <div className={styles.profile__settings}>
+            <div className={styles.settings__left}>
+              <div className={styles.settings__img} onClick={() => fileInputRef.current.click()}>
                 <a target="_self">
                   {user?.avatar ? <img src={`http://localhost:8090/${user.avatar}`} alt="" /> : <img src='' alt="" /> }
                 </a>
@@ -74,12 +76,12 @@ export const ProfilePageData = ({ data }) => {
                 }}
               />
             </div>
-            <div className="settings__right">
-              <form className="settings__form" action="#">
-                <div className="settings__div">
+            <div className={styles.settings__right}>
+              <form className={styles.settings__form} action="#">
+                <div className={styles.settings__div}>
                   <label htmlFor="settings-fname">Имя</label>
                   <input
-                    className="settings__f-name"
+                    className={styles.settings__f_name}
                     id="settings-fname"
                     name="fname"
                     type="text"
@@ -88,10 +90,10 @@ export const ProfilePageData = ({ data }) => {
                     onChange={(event) => setName(event.target.value)}
                   />
                 </div>
-                <div className="settings__div">
+                <div className={styles.settings__div}>
                   <label htmlFor="settings-lname">Фамилия</label>
                   <input
-                    className="settings__l-name"
+                    className={styles.settings__l_name}
                     id="settings-lname"
                     name="lname"
                     type="text"
@@ -100,10 +102,10 @@ export const ProfilePageData = ({ data }) => {
                     onChange={(event) => setSurname(event.target.value)}
                   />
                 </div>
-                <div className="settings__div">
+                <div className={styles.settings__div}>
                   <label htmlFor="settings-city">Город</label>
                   <input
-                    className="settings__city"
+                    className={styles.settings__city}
                     id="settings-city"
                     name="city"
                     type="text"
@@ -112,10 +114,10 @@ export const ProfilePageData = ({ data }) => {
                     onChange={(event) => setCity(event.target.value)}
                   />
                 </div>
-                <div className="settings__div">
+                <div className={styles.settings__div}>
                   <label htmlFor="settings-phone">Телефон</label>
                   <input
-                    className="settings__phone"
+                    className={styles.settings__phone}
                     id="settings-phone"
                     name="phone"
                     type="tel"
@@ -124,7 +126,7 @@ export const ProfilePageData = ({ data }) => {
                     onChange={(event) => setPhone(event.target.value)}
                   />
                 </div>
-                <button className="settings__btn btn-hov02" id="settings-btn" onClick={(event) => handleSaveChangesClick(event)}>
+                <button className={styles.settings__btn} id="settings-btn" onClick={(event) => handleSaveChangesClick(event)}>
                   Сохранить
                 </button>
               </form>

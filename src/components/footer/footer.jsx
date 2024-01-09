@@ -6,7 +6,7 @@ import LogoHome from '../../assets/icons/icon_01.png'
 import LogoAddNewAdv from '../../assets/icons/icon_02.png'
 import LogoProfile from '../../assets/icons/icon_03.png'
 
-import './footer.scss'
+import styled from './footer.module.scss'
 
 export const Footer = () => {
   const dispatch = useDispatch();
@@ -36,19 +36,19 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="footer">
-    <div className="footer__container">
-      <div className="footer__img">
+    <footer className={styled.footer}>
+    <div className={styled.footer__container}>
+      <div className={styled.footer__img}>
         <Link to='/' target="_self">
           <img src={LogoHome} alt="home" />
         </Link>
       </div>
-      <div className="footer__img">
+      <div className={styled.footer__img}>
         <Link  target="_self">
           <img src={LogoAddNewAdv} alt="home" onClick={(event) => handleAddNewAdv(event)}/>
         </Link>
       </div>
-      <div className="footer__img">
+      <div className={styled.footer__img}>
         <Link target="_self" onClick={(event) => handleProfilePage(event)}>
           <img src={LogoProfile} alt="home" />
         </Link>

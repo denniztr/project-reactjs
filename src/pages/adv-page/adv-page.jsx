@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useGetAdvByIdQuery } from '../../store/adv-api';
 import { AdvContent, NavigateToMainPage, ReviewsComponent, EditAdvertisementComponent } from '../../components';
 
-import './adv-page.scss';
+import styles from './adv-page.module.scss';
 
 export const AdvPage = () => {
   const reviews = useSelector((state) => state.modal.reviewsModal);
@@ -13,10 +13,10 @@ export const AdvPage = () => {
   const { data, isLoading, refetch } = useGetAdvByIdQuery(id);
 
   return (
-    <div className='wrapper'>
-      <div className='container'>
-        <NavigateToMainPage />
-        <div className='main__artic artic'>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <NavigateToMainPage/>
+        <div className={styles.main__artic}>
           <AdvContent data={data} isLoading={isLoading}/>
         </div>
       </div>

@@ -12,10 +12,10 @@
 }
 
 .search {
-  &__logo-mob-link {
+  &__logo_mob_link {
     display: none;
   }
-  &__logo-img {
+  &__logo_img {
     width: 54px;
     height: auto;
   }
@@ -27,7 +27,7 @@
     display: flex;
   }
 
-  &__text-mob {
+  &__text_mob {
     display: none;
   }
 
@@ -84,19 +84,19 @@
       top: 0;
       z-index: 3;
     }
-
+  }
     .search {
-      &__logo-mob-link {
+      &__logo_mob_link {
         display: block;
         width: 32px;
         height: 32px;
       }
 
-      &__logo-link {
+      &__logo_link {
         display: none;
       }
 
-      &__logo-mob-img {
+      &__logo_mob_img {
         width: 32px;
         height: auto;
         display: block;
@@ -114,7 +114,7 @@
         display: none;
       }
 
-      &__text-mob {
+      &__text_mob {
         display: inline-block;
         width: 100%;
         height: 32px;
@@ -142,5 +142,5 @@
       }
     }
   }
-}
+
 

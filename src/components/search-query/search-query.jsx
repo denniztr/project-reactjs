@@ -1,30 +1,30 @@
 import SkyproLogo from '../../assets/icons/logo.png'
 import SkyproLogoMobile from '../../assets/icons/logo-mob.png'
-import './search-query.scss';
+import styles from './search-query.module.scss';
 
 export const SearchQuery = () => {
   return (
-    <div className="main__search search">
-      <a className="search__logo-link" target="_blank">
-        <img className="search__logo-img" alt="logo" src={SkyproLogo} />
+    <div className={styles.main__search}>
+      <a className={styles.search__logo_link} target="_blank">
+        <img className={styles.search__logo_img} alt="logo" src={SkyproLogo} />
       </a>
-      <a className="search__logo-mob-link" target="_blank">
-        <img className="search__logo-mob-img" alt="logo" src={SkyproLogoMobile} />
+      <a className={styles.search__logo_mob_link} target="_blank">
+        <img className={styles.search__logo_mob_img} alt="logo" src={SkyproLogoMobile} />
       </a>
-      <form className="search__form" action="#">
+      <form className={styles.search__form} action="#">
         <input
-          className="search__text"
+          className={styles.search__text}
           type="search"
           placeholder="Поиск по объявлениям"
           name="search"
         />
         <input
-          className="search__text-mob"
+          className={styles.search__text_mob}
           type="search"
           placeholder="Поиск"
           name="search-mob"
         />
-        <button className="search__btn btn-hov02">Найти</button>
+        <button className={styles.search__btn}>Найти</button>
       </form>
     </div>
   );
