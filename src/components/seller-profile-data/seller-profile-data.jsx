@@ -3,9 +3,14 @@
 import './seller-profile-data.scss';
 
 export const SellerProfileData = ({ seller }) => {
+
+  const handleHistoryBackClick = () => {
+    window.history.back()
+  }
+
   return (
     <>
-      <h2 className="main__h2">Профиль продавца</h2>
+      <h2 className="main__h2" onClick={handleHistoryBackClick}>Профиль продавца</h2>
       <div className="main__profile-sell">
         <div className="profile-sell__content">
           <div className="profile-sell__seller seller">
