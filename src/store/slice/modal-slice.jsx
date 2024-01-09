@@ -6,6 +6,7 @@ const modalSlice = createSlice({
     authModal: false,
     advModal: false,
     reviewsModal: false,
+    editModal: false,
   },
   reducers: {
     setAuthModal: (state) => {
@@ -17,8 +18,12 @@ const modalSlice = createSlice({
     setReviewsModal: (state) => {
       state.reviewsModal = !state.reviewsModal;
     },
+    setEditModal: (state) => {
+      state.editModal = !state.editModal;
+      console.log(state.editModal)
+    },
   },
 });
 
-export const { setAuthModal, setAdvModal, setReviewsModal } = modalSlice.actions;
+export const { setAuthModal, setAdvModal, setReviewsModal, setEditModal } = modalSlice.actions;
 export default modalSlice.reducer;

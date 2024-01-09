@@ -1,21 +1,24 @@
 import { useGetUserQuery } from '../../store/user-api'
-import { NavigateToMainPage, ProfilePageData } from '../../components'
-import './profile-page.scss'
+import { useGetMyAdvQuery } from '../../store/adv-api'
+import { NavigateToMainPage, ProfilePageData, CardsContent } from '../../components'
+import styles from './profile-page.module.scss'
+
 
 export const ProfilePage = () => {
-  const {data, isLoading} = useGetUserQuery();
-  
-  return (
-    <div className='wrapper'>
-      <div className='container'>
+  const { data, isLoading } = useGetUserQuery();
+  const { data: myAdvData, isLoading: myAdvLoading  } = useGetMyAdvQuery();
+  console.log(myAdvData)
+  return ( 
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
         <main className='main'>
-          <div className='main__container'>
-            <div className='main__center-block'>
+          <div className={styles.main__container}>
+            <div className={styles.main__center_block}>
               <NavigateToMainPage />
               { isLoading ? 'Загрузка' : <ProfilePageData data={data} /> }
-              <h3 className='main__title title'>Мои товары</h3>
+              <h3 className={styles.main__title}>Мои товары</h3>
             </div>
-            <p>карточки здесь</p>
+            <CardsContent data={myAdvData} isLoading={myAdvLoading}/>
           </div> 
         </main>
       </div>

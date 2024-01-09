@@ -43,3 +43,34 @@
     line-height: 1;
   }
 }
+
+.mob-link,
+.mob-img {
+  display: none;
+}
+
+@media screen and (max-width: 590px) {
+  .header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    &__nav {
+      display: none;
+    }
+  }
+
+  .mob-link {
+    display: block;
+    width: 32px;
+    height: 32px;
+    padding-left: 25px;
+  }
+
+  .mob-img {
+    width: 32px;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+}
