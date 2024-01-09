@@ -5,7 +5,7 @@ import { setEditModal } from '../../store/slice/modal-slice';
 import { TiDeleteOutline } from "react-icons/ti";
 import { usePatchAdvMutation, usePostImageMutation } from '../../store/adv-api';
 
-import './edit-adv-modal.scss'
+// import './edit-adv-modal.scss'
 
 export const EditAdvertisementComponent = ({ data, refetch }) => {
   const dispatch = useDispatch();

@@ -5,7 +5,7 @@ import { useGetReviewsQuery, usePostReviewMutation } from '../../store/adv-api';
 import { setReviewsModal } from '../../store/slice/modal-slice';
 import { ReviewsList } from '../reviews-list';
 
-import './reviews.scss';
+// import './reviews.scss';
 
 export const ReviewsComponent = ({ id }) => {
   const dispatch = useDispatch();
