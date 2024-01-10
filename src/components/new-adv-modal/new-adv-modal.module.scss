@@ -262,8 +262,7 @@
     &__block {
       position: absolute;
       z-index: 5;
-      left: 25px;
-      top: 75px;
+      left: calc(50% - (300px / 2));
       opacity: 1;
     }
 

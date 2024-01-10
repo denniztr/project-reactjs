@@ -6,7 +6,7 @@ import SkyproLogoModal from '../../assets/icons/logo_modal.png';
 import { setAuthModal } from '../../store/slice/modal-slice';
 import { usePostLoginMutation, usePostRegisterMutation } from '../../store/auth-api';
 import { setAccessToken } from '../../store/slice/user-slice';
-import './auth.scss';
+import styles from './auth.module.scss';
 
 export const Authorization = () => {
   const dispatch = useDispatch();
@@ -77,9 +77,9 @@ export const Authorization = () => {
   };
 
   return (
-    <div className="modal-overlay"> 
+    <div className={styles.container_bg}> 
       {loginMode ? (
-        <div className="modal__block">
+        <div className={styles.modal__block}>
           <SlArrowLeft
             style={{
               position: 'absolute',
@@ -89,14 +89,15 @@ export const Authorization = () => {
             }}
             onClick={handleLoginModalChange}
           />
-          <form className="modal__form-login" id="formLogUp" action="#">
-            <div className="modal__logo">
+          <form className={styles.modal__form_login} id="formLogUp" action="#">
+            <div className={styles.modal__logo}>
               <a>
                 <img src={SkyproLogoModal} alt="logo" />
               </a>
             </div>
             <input
-              className="modal__input login"
+              // className="modal__input login"
+              className={styles.modal__input}
               type="text"
               name="login"
               id="loginReg"
@@ -104,7 +105,8 @@ export const Authorization = () => {
               onChange={(event) => setEmail(event.target.value)}
             />
             <input
-              className="modal__input password-first"
+              // className="modal__input password-first"
+              className={styles.modal__input}
               type="password"
               name="password"
               id="passwordFirst"
@@ -112,7 +114,8 @@ export const Authorization = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
             <input
-              className="modal__input password-double"
+              // className="modal__input password-double"
+              className={styles.modal__input}
               type="password"
               name="password"
               id="passwordSecond"
@@ -120,7 +123,8 @@ export const Authorization = () => {
               onChange={(event) => setRepeatPassword(event.target.value)}
             />
             <input
-              className="modal__input first-name"
+              // className="modal__input first-name"
+              className={styles.modal__input}
               type="text"
               name="first-name"
               id="first-name"
@@ -128,7 +132,8 @@ export const Authorization = () => {
               onChange={(event) => setName(event.target.value)}
             />
             <input
-              className="modal__input first-last"
+              // className="modal__input first-last"
+              className={styles.modal__input}
               type="text"
               name="first-last"
               id="first-last"
@@ -136,7 +141,8 @@ export const Authorization = () => {
               onChange={(event) => setSurname(event.target.value)}
             />
             <input
-              className="modal__input city"
+              // className="modal__input city"
+              className={styles.modal__input}
               type="text"
               name="city"
               id="city"
@@ -144,13 +150,13 @@ export const Authorization = () => {
               onChange={(event) => setCity(event.target.value)}
             />
             <p>{error}</p>
-            <button className="modal__btn-signup-ent" id="SignUpEnter" onClick={(event) => handleRegister(event)}>
+            <button className={styles.modal__btn_signup_ent} id="SignUpEnter" onClick={(event) => handleRegister(event)}>
               <a>Зарегистрироваться</a>
             </button>
           </form>
         </div>
       ) : (
-        <div className="modal__block">
+        <div className={styles.modal__block}>
           <SlClose             
             style={{
               position: 'absolute',
@@ -161,18 +167,19 @@ export const Authorization = () => {
             onClick={() => dispatch(setAuthModal(false))}
             />
           <form
-            className="modal__form-login"
+            className={styles.modal__form_login}
             style={{ height: '100%' }}
             id="formLogIn"
             action="#"
           >
-            <div className="modal__logo">
+            <div className={styles.modal__logo}>
               <a>
                 <img src={SkyproLogoModal} alt="logo" />
               </a>
             </div>
             <input
-              className="modal__input login"
+              // className="modal__input login"
+              className={styles.modal__input}
               type="text"
               name="login"
               id="formlogin"
@@ -180,18 +187,19 @@ export const Authorization = () => {
               onChange={(event) => setEmail(event.target.value)}
             />
             <input
-              className="modal__input password"
+              // className="modal__input password"
+              className={styles.modal__input}
               type="password"
               name="password"
               id="formpassword"
               placeholder="Пароль"
               onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="modal__btn-enter" id="btnEnter" onClick={(event) => handleLogin(event)}>
+            <button className={styles.modal__btn_enter} id="btnEnter" onClick={(event) => handleLogin(event)}>
               <a>Войти</a>
             </button>
             <button
-              className="modal__btn-signup"
+              className={styles.modal__btn_signup}
               id="btnSignUp"
               onClick={handleLoginModalChange}
             >

@@ -2,25 +2,25 @@
 import { formatDistance } from 'date-fns';
 import { ru } from 'date-fns/locale';
 
-import './reviews-list.scss'
+import styles from './reviews-list.module.scss'
 
 export const ReviewsList = ({ data }) => {
   return (
-    <div className="modal__reviews reviews">
-    <div className="reviews__review review">
+    <div className={styles.modal__reviews}>
+    <div className={styles.reviews__review}>
        { data.map((comment) => (
-          <div className="review__item" key={comment.id}>
-            <div className="review__left">
-              <div className="review__img">
+          <div className={styles.review__item} key={comment.id}>
+            <div className={styles.review__left}>
+              <div className={styles.review__img}>
                 <img src={`http://localhost:8090/${comment.author.avatar}`} alt="" />
               </div>
             </div>
-            <div className="review__right">
-              <p className="review__name font-t">
+            <div className={styles.review__right}>
+              <p className={styles.review__name} >
                 {comment.author.name}<span>{formatDistance(new Date(comment.created_on), Date.now(), { locale: ru })} назад</span>
               </p>
-              <h5 className="review__title font-t">Комментарий</h5>
-              <p className="review__text font-t">
+              <h5 className={styles.review__title}>Комментарий</h5>
+              <p className={styles.review__text}>
                 {comment.text}
               </p>
             </div>

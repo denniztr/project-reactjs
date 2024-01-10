@@ -38,7 +38,7 @@ export const NewAdvModal = () => {
       <div className={styles.container_bg}>
         <div className={styles.modal__block}>
           <div className={styles.modal__content}>
-            <h3 className={styles.modal__title}>Новое объявление</h3>
+            <h3 className={styles.modal__title} onClick={() => dispatch(setAdvModal(false))}>Новое объявление</h3>
             <div className={styles.modal__btn_close} onClick={() => dispatch(setAdvModal(false))}>
               <div className={styles.modal__btn_close_line}></div>
             </div>

@@ -5,7 +5,7 @@ import { setEditModal } from '../../store/slice/modal-slice';
 import { TiDeleteOutline } from "react-icons/ti";
 import { usePatchAdvMutation, usePostImageMutation } from '../../store/adv-api';
 
-// import './edit-adv-modal.scss'
+import styles from './edit-adv-modal.module.scss'
 
 export const EditAdvertisementComponent = ({ data, refetch }) => {
   const dispatch = useDispatch();
@@ -44,23 +44,22 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
   };
 
   return (
-    <div className="modal-overlay">
-    <div className="container-bg">
-      <div className="modal__block">
-        <div className="modal__content">
-          <h3 className="modal__title">Редактировать объявление</h3>
-          <div className="modal__btn-close" onClick={() => dispatch(setEditModal(false))}>
-            <div className="modal__btn-close-line"></div>
+    <div className={styles.container_bg}>
+      <div className={styles.modal__block}>
+        <div className={styles.modal__content}>
+          <h3 className={styles.modal__title} onClick={() => dispatch(setEditModal(false))} >Редактировать объявление</h3>
+          <div className={styles.modal__btn_close} onClick={() => dispatch(setEditModal(false))}>
+            <div className={styles.modal__btn_close_line}></div>
           </div>
           <form
-            className="modal__form-newArt form-newArt"
+            className={styles.modal__form_newArt}
             id="formNewArt"
             action="#"
           >
-            <div className="form-newArt__block">
+            <div className={styles.form_newArt__block}>
               <label htmlFor="name">Название</label>
               <input
-                className="form-newArt__input"
+                className={styles.form_newArt__input}
                 type="text"
                 name="name"
                 id="formName"
@@ -69,7 +68,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                 onChange={(event) => setTitle(event.target.value)}
               />
             </div>
-            <div className="form-newArt__block">
+            <div className={styles.form_newArt__block}>
               <label htmlFor="text">Описание</label>
               <textarea
                 className="form-newArt__area"
@@ -82,13 +81,13 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                 onChange={(event) => setDescription(event.target.value)}
               ></textarea>
             </div>
-            <div className="form-newArt__block">
-              <p className="form-newArt__p">
+            <div className={styles.form_newArt__block}>
+              <p className={styles.form_newArt__p}>
                 Фотографии товара<span>не более 5 фотографий</span>
               </p>
-              <div className="form-newArt__bar-img">
+              <div className={styles.form_newArt__bar_img}>
 
-                <div className="form-newArt__img"  onClick={() => fileInputRef.current.click()}>
+                <div className={styles.form_newArt__img}  onClick={() => fileInputRef.current.click()}>
                 <input 
                       type="file" 
                       id="upload_photo" 
@@ -103,10 +102,10 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                       }}
                       />
                   <img src={`http://localhost:8090/${data.images[0]?.url}`} />
-                  <div className="form-newArt__img-cover"></div>
+                  <div className={styles.form_newArt__img_cover}></div>
                 </div>
 
-                <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
+                <div className={styles.form_newArt__img} onClick={() => fileInputRef.current.click()}>
                 <input 
                       type="file" 
                       id="upload_photo" 
@@ -121,11 +120,11 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                       }}
                       />
                   <img src={`http://localhost:8090/${data.images[1]?.url}`} alt="" />
-                  <div className="form-newArt__img-cover"></div>
+                  <div className={styles.form_newArt__img_cover}></div>
                 </div>
 
-                <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
-                  <div className="form-newArt__img-cover"></div>
+                <div className={styles.form_newArt__img} onClick={() => fileInputRef.current.click()}>
+                  <div className={styles.form_newArt__img_cover}></div>
                   <input 
                       type="file" 
                       id="upload_photo" 
@@ -142,8 +141,8 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                   <img src={`http://localhost:8090/${data.images[2]?.url}`} alt="" />
                 </div>
 
-                <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
-                  <div className="form-newArt__img-cover"></div>
+                <div className={styles.form_newArt__img} onClick={() => fileInputRef.current.click()}>
+                  <div className={styles.form_newArt__img_cover}></div>
                   <input 
                       type="file" 
                       id="upload_photo" 
@@ -159,9 +158,8 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                       />
                   <img src={`http://localhost:8090/${data.images[3]?.url}`} alt="" />
                 </div>
-
-                <div className="form-newArt__img" onClick={() => fileInputRef.current.click()}>
-                  <div className="form-newArt__img-cover"></div>
+                <div className={styles.form_newArt__img} onClick={() => fileInputRef.current.click()}>
+                  <div className={styles.form_newArt__img_cover}></div>
                   <input 
                       type="file" 
                       id="upload_photo" 
@@ -179,20 +177,20 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                 </div>
               </div>
             </div>
-            <div className="form-newArt__block block-price">
+            <div className={styles.form_newArt__block}>
               <label htmlFor="price">Цена</label>
               <input
-                className="form-newArt__input-price"
+                className={styles.form_newArt__input_price}
                 type="text"
                 name="price"
                 id="formName"
                 defaultValue={data.price}
                 onChange={(event) => setPrice(event.target.value)}
               />
-              <div className="form-newArt__input-price-cover"></div>
+              <div className={styles.form_newArt__input_price_cover}></div>
             </div>
             <button
-              className="form-newArt__btn-pub btn-hov02"
+              className={styles.form_newArt__btn_pub}
               id="btnPublish"
               onClick={(event) => handleSaveChangesClick(event)}
             >
@@ -202,6 +200,5 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
         </div>
       </div>
     </div>
-  </div>
   )
 }
