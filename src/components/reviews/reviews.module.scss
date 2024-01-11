@@ -157,24 +157,39 @@
 }
 
 @media screen and (max-width: 600px) {
+  .container_bg {
+    width: 100vw;
+    //height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(101, 101, 101, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .modal {
     &__block {
       position: absolute;
       z-index: 5;
       left: calc(50% - (385px / 2));
       opacity: 1;
-      top: 5px;
+      // top: 5px;
+      top: 0;
+      left: 0;
     }
 
     &__content {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      width: 100%;
+      // width: 100%;
       min-width: 320px;
       //height: auto;
-      height: calc(100vh - 65px);
+      height: calc(100vh - 52px);
       padding: 30px 20px 30px;
+      border-radius: 0;
     }
 
     &__title {
@@ -205,6 +220,7 @@
 
     &__form_newArt {
       margin-top: 22px;
+      width: 385px;
     }
   }
 

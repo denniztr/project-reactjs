@@ -91,7 +91,7 @@
     position: relative;
   }
 
-  & label {
+  &__label {
     margin-bottom: 4px;
     font-size: 16px;
     line-height: 24px;
@@ -262,7 +262,11 @@
     &__block {
       position: absolute;
       z-index: 5;
-      left: calc(50% - (300px / 2));
+      //left: calc(50% - (300px / 2));
+      left: 0;
+      width: 100vw;
+      top: 0;
+      height: 100%;
       opacity: 1;
     }
 
@@ -272,8 +276,10 @@
       align-items: flex-start;
       width: 100%;
       min-width: 320px;
-      height: auto;
+      //height: auto;
+      height: 100vh;
       padding: 30px 20px 30px;
+      border-radius: 0;
     }
 
     &__title {

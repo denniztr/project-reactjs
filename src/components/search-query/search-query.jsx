@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import SkyproLogo from '../../assets/icons/logo.png'
 import SkyproLogoMobile from '../../assets/icons/logo-mob.png'
 import { setFilteredData } from '../../store/slice/adv-slice';
-import { TiDeleteOutline } from "react-icons/ti";
 import styles from './search-query.module.scss';
 
 export const SearchQuery = ({ data }) => {
@@ -24,8 +23,6 @@ export const SearchQuery = ({ data }) => {
       const results = data.filter(item => item.title.toLowerCase().includes(searchTextMob.toLowerCase()));
       dispatch(setFilteredData(results));
     }, 500);
-    // const results = data.filter(item => item.title.toLowerCase().includes(searchTextMob.toLowerCase()));
-    // dispatch(setFilteredData(results))
     clearTimeout()
   }, [data, dispatch, searchTextMob])
 

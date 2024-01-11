@@ -41,6 +41,10 @@ export const AdvContent = ({ data, isLoading }) => {
       });
   };
 
+  const reviews_modal = useSelector((state) => state.modal.reviewsModal)
+  const auth_modal = useSelector((state) => state.modal.authModal)
+  const adv_modal = useSelector((state) => state.modal.advModal)
+  const edit_modal = useSelector((state) => state.modal.editModal)
   return (
     <>
       {isLoading ? (
@@ -50,7 +54,7 @@ export const AdvContent = ({ data, isLoading }) => {
           <div className={styles.artic__content}>
             <div className={styles.article__left}>
               <div className={styles.article__fill_img}>
-              <div className={styles.article__fill_img_before} onClick={() => window.history.back()}></div>
+                {reviews_modal || auth_modal || adv_modal || edit_modal ? (null) : (<div className={styles.article__fill_img_before} onClick={() => window.history.back()}></div>)}
                 <div className={styles.article__img}>
                   { data.images[0]?.url ? (
                     <img
@@ -76,17 +80,11 @@ export const AdvContent = ({ data, isLoading }) => {
                 </div>
                 <div className={styles.article__img_bar_mob}>
                   {data.images?.map((el, index) => (
-                    // <div
-                    //   key={index}
-                    //   className={`img_bar_mob__circle${
-                    //     index === 0 ? ' circle_active' : ''
-                    //   }`}
-                    // ></div>
                     <div
                       key={index}
                       className={`${styles.img_bar_mob__circle} ${index === 0 ? styles.circle_active : ''}`}
                       onClick={() => setSelectedImage(`http://localhost:8090/` + el.url)}
-                  ></div>
+                    ></div>
                   ))}
                 </div>
               </div>

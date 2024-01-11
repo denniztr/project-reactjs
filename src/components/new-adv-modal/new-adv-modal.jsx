@@ -48,7 +48,7 @@ export const NewAdvModal = () => {
               action="#"
             >
               <div className={styles.form_newArt__block}>
-                <label htmlFor="name">Название</label>
+                <label className={styles.form_newArt__label} htmlFor="name">Название</label>
                 <input
                   className={styles.form_newArt__input}
                   type="text"
@@ -59,7 +59,7 @@ export const NewAdvModal = () => {
                 />
               </div>
               <div className={styles.form_newArt__block}>
-                <label htmlFor="text">Описание</label>
+                <label className={styles.form_newArt__label} htmlFor="text">Описание</label>
                 <textarea
                   className={styles.form_newArt__area}
                   name="text"
@@ -113,7 +113,7 @@ export const NewAdvModal = () => {
                 </div>
               </div>
               <div className={styles.form_newArt__block}>
-                <label htmlFor="price">Цена</label>
+                <label className={styles.form_newArt__label} htmlFor="price">Цена</label>
                 <input
                   className={styles.form_newArt__input_price}
                   type="text"

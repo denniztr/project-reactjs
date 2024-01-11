@@ -11,7 +11,8 @@ function App() {
   
   return (
     <BrowserRouter>
-      <Header user={user} />
+    { adv_modal ? null : <Header user={user} /> }
+      {/* <Header user={user} /> */}
       <AppRoutes />
       { auth_modal ? <Authorization /> : null }
       { adv_modal ? <NewAdvModal /> : null }
