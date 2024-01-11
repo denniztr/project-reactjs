@@ -3,7 +3,7 @@ import { useState, useRef } from 'react';
 import { useDispatch } from 'react-redux'
 import { setEditModal } from '../../store/slice/modal-slice';
 import { TiDeleteOutline } from "react-icons/ti";
-import { usePatchAdvMutation, usePostImageMutation } from '../../store/adv-api';
+import { usePatchAdvMutation, usePostImageMutation, useDeleteImageMutation } from '../../store/adv-api';
 
 import styles from './edit-adv-modal.module.scss'
 
@@ -17,6 +17,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
 
   const [patchAdv] = usePatchAdvMutation();
   const [postImage] = usePostImageMutation();
+  const [deleteImage] = useDeleteImageMutation();
 
   const handleSaveChangesClick = (event) => {
     event.preventDefault();
@@ -43,6 +44,11 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
     }
   };
 
+  const handleDeleteImage = (event) => {
+    event.preventDefault()
+    console.log(data.id)
+  } 
+
   return (
     <div className={styles.container_bg}>
       <div className={styles.modal__block}>
@@ -57,7 +63,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
             action="#"
           >
             <div className={styles.form_newArt__block}>
-              <label htmlFor="name">Название</label>
+              <label className={styles.form_newArt__label} htmlFor="name">Название</label>
               <input
                 className={styles.form_newArt__input}
                 type="text"
@@ -69,7 +75,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
               />
             </div>
             <div className={styles.form_newArt__block}>
-              <label htmlFor="text">Описание</label>
+              <label htmlFor="text" className={styles.form_newArt__label}>Описание</label>
               <textarea
                 className="form-newArt__area"
                 name="text"
@@ -86,7 +92,6 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                 Фотографии товара<span>не более 5 фотографий</span>
               </p>
               <div className={styles.form_newArt__bar_img}>
-
                 <div className={styles.form_newArt__img}  onClick={() => fileInputRef.current.click()}>
                 <input 
                       type="file" 
@@ -104,7 +109,18 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                   <img src={`http://localhost:8090/${data.images[0]?.url}`} />
                   <div className={styles.form_newArt__img_cover}></div>
                 </div>
-
+                  <TiDeleteOutline 
+                    size={25} 
+                    className={styles.md_delete} 
+                    onClick={(event) => {
+                        event.preventDefault()
+                        console.log(data.id)
+                        console.log(data.images[0]?.url)
+                        deleteImage({ id: data.id, file_url: data.images[0].url }).then((res) => console.log(res))
+                        // handleDeleteImage(event)
+                      }
+                    }
+                  />
                 <div className={styles.form_newArt__img} onClick={() => fileInputRef.current.click()}>
                 <input 
                       type="file" 
@@ -122,7 +138,6 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                   <img src={`http://localhost:8090/${data.images[1]?.url}`} alt="" />
                   <div className={styles.form_newArt__img_cover}></div>
                 </div>
-
                 <div className={styles.form_newArt__img} onClick={() => fileInputRef.current.click()}>
                   <div className={styles.form_newArt__img_cover}></div>
                   <input 

@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LiaTruckLoadingSolid } from 'react-icons/lia';
@@ -14,7 +14,17 @@ export const AdvContent = ({ data, isLoading }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [phone, showPone] = useState(false);
-  const [selectedImage, setSelectedImage] = useState(data?.images[0]?.url);
+  const [selectedImage, setSelectedImage] = useState('');
+
+  useEffect(() => {
+
+    if (isLoading) {
+      setSelectedImage('')
+    } else {
+      setSelectedImage(`http://localhost:8090/` + data.images[0]?.url)
+    }
+
+  }, [data, isLoading])
 
   console.log(selectedImage)
 
@@ -34,16 +44,19 @@ export const AdvContent = ({ data, isLoading }) => {
   return (
     <>
       {isLoading ? (
-        <LiaTruckLoadingSolid size={100} className="loader" />
+        <LiaTruckLoadingSolid size={100} className={styles.loader} />
       ) : (
         <>
           <div className={styles.artic__content}>
             <div className={styles.article__left}>
               <div className={styles.article__fill_img}>
+              <div className={styles.article__fill_img_before} onClick={() => window.history.back()}></div>
                 <div className={styles.article__img}>
                   { data.images[0]?.url ? (
                     <img
-                    src={`http://localhost:8090/${data.images[0]?.url}` || selectedImage}
+                      // src={`http://localhost:8090/${data.images[0]?.url}` || selectedImage}
+                      src={selectedImage}
+                   alt='image'
                   />
                   ) : (
                     <AiOutlinePicture size={50} className={styles.AiOutlinePicture}/>
@@ -56,19 +69,24 @@ export const AdvContent = ({ data, isLoading }) => {
                     </div>
                   ))} */}
                   {data.images?.map((el, index) => (
-                    <div key={index} className={styles.article__img_bar_div} onClick={() => setSelectedImage(el.url)}>
+                    <div key={index} className={styles.article__img_bar_div} onClick={() => setSelectedImage(`http://localhost:8090/` + el.url)}>
                       <img src={`http://localhost:8090/${el.url}`} alt="" />
                     </div>
                   ))}
                 </div>
                 <div className={styles.article__img_bar_mob}>
                   {data.images?.map((el, index) => (
+                    // <div
+                    //   key={index}
+                    //   className={`img_bar_mob__circle${
+                    //     index === 0 ? ' circle_active' : ''
+                    //   }`}
+                    // ></div>
                     <div
                       key={index}
-                      className={`img-bar-mob__circle${
-                        index === 0 ? ' circle-active' : ''
-                      }`}
-                    ></div>
+                      className={`${styles.img_bar_mob__circle} ${index === 0 ? styles.circle_active : ''}`}
+                      onClick={() => setSelectedImage(`http://localhost:8090/` + el.url)}
+                  ></div>
                   ))}
                 </div>
               </div>

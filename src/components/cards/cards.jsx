@@ -14,7 +14,7 @@ export const CardsContent = ({ data, isLoading }) => {
     <div className={styles.main__content}>
       <div className={styles.cards}>
         { isLoading ? (
-          <LiaTruckLoadingSolid size={100} className="loader"/>
+          <LiaTruckLoadingSolid size={100} className={styles.loader} />
         ) : (
           data.map((card) => (
             <div className={styles.cards__item} key={card.id}>
@@ -24,7 +24,7 @@ export const CardsContent = ({ data, isLoading }) => {
                   { card.images[0]?.url ? (
                     <img alt='' src={`http://localhost:8090/${card.images[0]?.url}`}/>
                   ) : (
-                    <AiOutlinePicture size={50} className="AiOutlinePicture"/>
+                    <AiOutlinePicture size={50} className={styles.AiOutlinePicture} />
                   ) }
                   {/* <img alt='' src={`http://localhost:8090/${card.images[0]?.url}`}/> */}
                   

@@ -70,6 +70,12 @@
   }
 }
 
+.clear_search {
+  position: absolute;
+  bottom: 0;
+  color: gray;
+}
+
 @media screen and (max-width: 590px) {
   .main {
     &__search {
@@ -142,5 +148,6 @@
       }
     }
   }
+
 
 
