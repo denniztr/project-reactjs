@@ -50,14 +50,19 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
 
   const handleDeleteImage = (event, file_url) => {
     event.preventDefault();
-    console.log(data.id)
-    console.log(file_url)
+    setIsFileChange(false)
+
+    setTimeout(() => {
+
+      setIsFileChange(true);
+    }, 2000);
+
     deleteImage({ id: data.id, file_url: file_url }).then((res) => {
       console.log(res)
       refetch()
     })
   };
-
+  console.log(isFileChange)
   return (
     <div className={styles.container_bg}>
       <div className={styles.modal__block}>
@@ -115,7 +120,9 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
               <div className={styles.form_newArt__bar_img}>
                 <div
                   className={styles.form_newArt__img}
-                  onClick={() => fileInputRef.current.click()}
+                  onClick={() => {
+                    if (!data.images[0]?.url) fileInputRef.current.click()       
+                  }}
                 >
                   <input
                     type="file"
@@ -151,7 +158,9 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                 </div>
                 <div
                   className={styles.form_newArt__img}
-                  onClick={() => fileInputRef.current.click()}
+                  onClick={() => {
+                    if (!data.images[1]?.url) fileInputRef.current.click()       
+                  }}
                 >
                   <input
                     type="file"
@@ -187,7 +196,9 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                 </div>
                 <div
                   className={styles.form_newArt__img}
-                  onClick={() => fileInputRef.current.click()}
+                  onClick={() => {
+                    if (!data.images[2]?.url) fileInputRef.current.click()       
+                  }}
                 >
                   <div className={styles.form_newArt__img_cover}></div>
                   {data.images[2]?.url ? (
@@ -224,7 +235,9 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
 
                 <div
                   className={styles.form_newArt__img}
-                  onClick={() => fileInputRef.current.click()}
+                  onClick={() => {
+                    if (!data.images[3]?.url) fileInputRef.current.click()       
+                  }}
                 >
                   <div className={styles.form_newArt__img_cover}></div>
                   {data.images[3]?.url ? (
@@ -260,7 +273,9 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                 </div>
                 <div
                   className={styles.form_newArt__img}
-                  onClick={() => fileInputRef.current.click()}
+                  onClick={() => {
+                    if (!data.images[4]?.url) fileInputRef.current.click()       
+                  }}
                 >
                   <div className={styles.form_newArt__img_cover}></div>
                   {data.images[4]?.url ? (
@@ -288,7 +303,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                   {data.images[4]?.url ? (
                     <img
                       src={`http://localhost:8090/${data.images[4]?.url}`}
-                      alt="image"
+                      alt="img"
                     />
                   ) : (
                     <img src="" alt="img" />
