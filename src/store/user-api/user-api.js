@@ -35,6 +35,19 @@ export const userApi = createApi({
         },
       }),
     }),
+    updateToken: build.mutation({
+      query: ({ access_token, refresh_token }) => ({
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        url: 'auth/login',
+        method: 'PUT',
+        body: {
+          access_token: access_token,
+          refresh_token: refresh_token,
+        },
+      }),
+    }),
   }),
 });
 
@@ -43,4 +56,5 @@ export const {
   useGetUserQuery,
   usePostUserAvatarMutation,
   usePatchUserMutation,
+  useUpdateTokenMutation,
 } = userApi;

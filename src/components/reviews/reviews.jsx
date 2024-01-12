@@ -5,7 +5,7 @@ import { useGetReviewsQuery, usePostReviewMutation } from '../../store/adv-api';
 import { setReviewsModal } from '../../store/slice/modal-slice';
 import { ReviewsList } from '../reviews-list';
 
-import './reviews.scss';
+import styles from  './reviews.module.scss';
 
 export const ReviewsComponent = ({ id }) => {
   const dispatch = useDispatch();
@@ -25,28 +25,27 @@ export const ReviewsComponent = ({ id }) => {
   };
 
   return (
-    <div className="modal-overlay">
-      <div className="container-bg">
-        <div className="modal__block">
-          <div className="modal__content">
-            <h3 className="modal__title">Отзывы</h3>
+      <div className={styles.container_bg}>
+        <div className={styles.modal__block}>
+          <div className={styles.modal__content}>
+            <h3 className={styles.modal__title} onClick={() => dispatch(setReviewsModal(false))}>Отзывы</h3>
             <div
-              className="modal__btn-close"
+              className={styles.modal__btn_close}
               onClick={() => dispatch(setReviewsModal(false))}
             >
-              <div className="modal__btn-close-line"></div>
+              <div className={styles.modal__btn_close_line}></div>
             </div>
-            <div className="modal__scroll">
+            <div className={styles.modal__scroll}>
               {user ? (
                 <form
-                  className="modal__form-newArt form-newArt"
+                  className={styles.modal__form_newArt}
                   id="formNewArt"
                   action="#"
                 >
-                  <div className="form-newArt__block">
-                    <label htmlFor="text">Добавить отзыв</label>
+                  <div className={styles.form_newArt__block}>
+                    <label className={styles.form_newArt__label} htmlFor="text">Добавить отзыв</label>
                     <textarea
-                      className="form-newArt__area"
+                      className={styles.form_newArt__area}
                       name="text"
                       id="formArea"
                       cols="auto"
@@ -56,7 +55,7 @@ export const ReviewsComponent = ({ id }) => {
                     ></textarea>
                   </div>
                   <button
-                    className="form-newArt__btn-pub btn-hov02"
+                    className={styles.form_newArt__btn_pub}
                     id="btnPublish"
                     onClick={(event) => handlePostReview(event)}
                   >
@@ -75,6 +74,5 @@ export const ReviewsComponent = ({ id }) => {
           </div>
         </div>
       </div>
-    </div>
   );
 };

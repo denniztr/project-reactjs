@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { SlArrowLeft, SlClose } from 'react-icons/sl';
 import SkyproLogoModal from '../../assets/icons/logo_modal.png';
 import { setAuthModal } from '../../store/slice/modal-slice';
-import { usePostLoginMutation, usePostRegisterMutation } from '../../store/auth-api';
+import {
+  usePostLoginMutation,
+  usePostRegisterMutation,
+} from '../../store/auth-api';
 import { setAccessToken } from '../../store/slice/user-slice';
-import './auth.scss';
+import styles from './auth.module.scss';
 
 export const Authorization = () => {
   const dispatch = useDispatch();
@@ -16,87 +19,99 @@ export const Authorization = () => {
   const [postLogin] = usePostLoginMutation();
 
   const [loginMode, setLoginMode] = useState(false);
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [repeatPassword, setRepeatPassword] = useState('')
-  const [name, setName] = useState('')
-  const [surname, setSurname] = useState('')
-  const [city, setCity] = useState('')
-  const [error, setError] = useState('')
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+  const [city, setCity] = useState('');
+  const [error, setError] = useState('');
 
   const handleLoginModalChange = () => {
     setLoginMode(!loginMode);
   };
 
   const handleRegister = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!email || !password) {
-      setError("Укажите email/пароль");
+      setError('Укажите email/пароль');
       return;
     }
 
     if (password !== repeatPassword) {
-      setError("Пароли не совпадают");
+      setError('Пароли не совпадают');
       return;
     }
 
     if (email.length < 3) {
-      setError("Введенный E-mail слишком короткий");
+      setError('Введенный E-mail слишком короткий');
       return;
     }
 
     if (password.length < 6) {
-      setError("Введенный пароль слишком короткий");
-       return;
+      setError('Введенный пароль слишком короткий');
+      return;
     }
 
-    postRegister({ email, password, name, surname, city})
-      .then((res) => {
-        console.log(res.data);
-        setLoginMode(false);
-        setEmail(res.data.email);
-        setPassword(password);
-      });
+    postRegister({ email, password, name, surname, city }).then((res) => {
+      console.log(res.data);
+      setLoginMode(false);
+      setEmail(res.data.email);
+      setPassword(password);
+    });
   };
 
   const handleLogin = (event) => {
-    event.preventDefault()
+    event.preventDefault();
 
     if (!email || !password) {
-      setError('Не заполнены данные для входа')
+      setError('Не заполнены данные для входа');
     }
 
-    postLogin({ email, password })
-      .then((res) => {
-        dispatch(setAccessToken(res.data.access_token));
-        localStorage.setItem('refresh_token', res.data.refresh_token);
-        dispatch(setAuthModal(false));
-        navigate('/profile');
-      })
+    postLogin({ email, password }).then((res) => {
+      dispatch(setAccessToken(res.data.access_token));
+      localStorage.setItem('refresh_token', res.data.refresh_token);
+      dispatch(setAuthModal(false));
+      navigate('/profile');
+    });
   };
 
   return (
-    <div className="modal-overlay"> 
+    <div className={styles.container_bg}>
       {loginMode ? (
-        <div className="modal__block">
-          <SlArrowLeft
-            style={{
-              position: 'absolute',
-              top: '45px',
-              left: '40px',
-              cursor: 'pointer',
-            }}
-            onClick={handleLoginModalChange}
-          />
-          <form className="modal__form-login" id="formLogUp" action="#">
-            <div className="modal__logo">
+        <SlArrowLeft
+          style={{
+            position: 'absolute',
+            top: '45px',
+            left: '40px',
+            cursor: 'pointer',
+          }}
+          onClick={handleLoginModalChange}
+        />
+      ) : (
+        <SlClose
+          style={{
+            position: 'absolute',
+            top: '45px',
+            left: '40px',
+            cursor: 'pointer',
+          }}
+          onClick={() => dispatch(setAuthModal(false))}
+        />
+      )}
+
+      {loginMode ? (
+        <div className={styles.modal__block}>
+          <form className={styles.modal__form_login} id="formLogUp" action="#">
+            <div className={styles.modal__logo}>
               <a>
                 <img src={SkyproLogoModal} alt="logo" />
               </a>
             </div>
             <input
-              className="modal__input login"
+              // className="modal__input login"
+              className={styles.modal__input}
               type="text"
               name="login"
               id="loginReg"
@@ -104,7 +119,8 @@ export const Authorization = () => {
               onChange={(event) => setEmail(event.target.value)}
             />
             <input
-              className="modal__input password-first"
+              // className="modal__input password-first"
+              className={styles.modal__input}
               type="password"
               name="password"
               id="passwordFirst"
@@ -112,7 +128,8 @@ export const Authorization = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
             <input
-              className="modal__input password-double"
+              // className="modal__input password-double"
+              className={styles.modal__input}
               type="password"
               name="password"
               id="passwordSecond"
@@ -120,7 +137,8 @@ export const Authorization = () => {
               onChange={(event) => setRepeatPassword(event.target.value)}
             />
             <input
-              className="modal__input first-name"
+              // className="modal__input first-name"
+              className={styles.modal__input}
               type="text"
               name="first-name"
               id="first-name"
@@ -128,7 +146,8 @@ export const Authorization = () => {
               onChange={(event) => setName(event.target.value)}
             />
             <input
-              className="modal__input first-last"
+              // className="modal__input first-last"
+              className={styles.modal__input}
               type="text"
               name="first-last"
               id="first-last"
@@ -136,7 +155,8 @@ export const Authorization = () => {
               onChange={(event) => setSurname(event.target.value)}
             />
             <input
-              className="modal__input city"
+              // className="modal__input city"
+              className={styles.modal__input}
               type="text"
               name="city"
               id="city"
@@ -144,35 +164,31 @@ export const Authorization = () => {
               onChange={(event) => setCity(event.target.value)}
             />
             <p>{error}</p>
-            <button className="modal__btn-signup-ent" id="SignUpEnter" onClick={(event) => handleRegister(event)}>
+            <button
+              className={styles.modal__btn_signup_ent}
+              id="SignUpEnter"
+              onClick={(event) => handleRegister(event)}
+            >
               <a>Зарегистрироваться</a>
             </button>
           </form>
         </div>
       ) : (
-        <div className="modal__block">
-          <SlClose             
-            style={{
-              position: 'absolute',
-              top: '45px',
-              left: '40px',
-              cursor: 'pointer',
-            }}
-            onClick={() => dispatch(setAuthModal(false))}
-            />
+        <div className={styles.modal__block}>
           <form
-            className="modal__form-login"
+            className={styles.modal__form_login}
             style={{ height: '100%' }}
             id="formLogIn"
             action="#"
           >
-            <div className="modal__logo">
+            <div className={styles.modal__logo}>
               <a>
                 <img src={SkyproLogoModal} alt="logo" />
               </a>
             </div>
             <input
-              className="modal__input login"
+              // className="modal__input login"
+              className={styles.modal__input}
               type="text"
               name="login"
               id="formlogin"
@@ -180,18 +196,23 @@ export const Authorization = () => {
               onChange={(event) => setEmail(event.target.value)}
             />
             <input
-              className="modal__input password"
+              // className="modal__input password"
+              className={styles.modal__input}
               type="password"
               name="password"
               id="formpassword"
               placeholder="Пароль"
               onChange={(event) => setPassword(event.target.value)}
             />
-            <button className="modal__btn-enter" id="btnEnter" onClick={(event) => handleLogin(event)}>
+            <button
+              className={styles.modal__btn_enter}
+              id="btnEnter"
+              onClick={(event) => handleLogin(event)}
+            >
               <a>Войти</a>
             </button>
             <button
-              className="modal__btn-signup"
+              className={styles.modal__btn_signup}
               id="btnSignUp"
               onClick={handleLoginModalChange}
             >

@@ -1,37 +1,21 @@
-.modal-overlay {
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  // width: 100%;
-  // height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Задайте здесь желаемый цвет и прозрачность фона */
-  // display: flex;
-  // justify-content: center;
-  // align-items: center;
-}
-
-.modal {
-  &__btn-close-line:hover {
-    &::after,
-    &::before {
-      background-color: #0080c1;
-    }
-  }
-}
-
-.modal__title {
-  &:hover::before {
-    border-top: 2px solid #0080c1;
-    border-left: 2px solid #0080c1;
-  }
+.container_bg {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(101, 101, 101, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal {
   &__block {
     position: absolute;
     z-index: 5;
-    // left: calc(50% - (600px / 2));
-    top: 50px;
+    left: calc(50% - (600px / 2));
+    top: 60px;
     opacity: 1;
   }
 
@@ -54,7 +38,7 @@
     color: #000000;
   }
 
-  &__btn-close {
+  &__btn_close {
     width: 23px;
     height: 23px;
     position: absolute;
@@ -64,7 +48,7 @@
     cursor: pointer;
   }
 
-  &__btn-close-line {
+  &__btn_close_line {
     position: relative;
     width: 100%;
     height: 100%;
@@ -90,7 +74,7 @@
     }
   }
 
-  &__form-newArt {
+  &__form_newArt {
     margin-top: 22px;
     display: flex;
     flex-direction: column;
@@ -98,15 +82,16 @@
   }
 }
 
-.form-newArt {
+.form_newArt {
   &__block {
     width: 100%;
     display: flex;
     flex-direction: column;
     margin-bottom: 20px;
+    position: relative;
   }
 
-  & label {
+  &__label {
     margin-bottom: 4px;
     font-size: 16px;
     line-height: 24px;
@@ -115,7 +100,7 @@
 
   &__input,
   &__area,
-  &__input-price {
+  &__input_price {
     padding: 13px 19px;
     background: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.2);
@@ -167,7 +152,7 @@
     }
   }
 
-  &__bar-img {
+  &__bar_img {
     width: 500px;
     display: flex;
     flex-direction: row;
@@ -177,7 +162,7 @@
     overflow: hidden;
   }
 
-  &__img-cover {
+  &__img_cover {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -213,13 +198,13 @@
     & img {
       display: block;
       width: 100%;
-      height: 100%;
-      object-fit: contain;
+      height: auto;
+      object-fit: cover;
       z-index: 2;
     }
   }
 
-  &__input-price-cover {
+  &__input_price_cover {
     width: 24px;
     height: 24px;
     font-size: 16px;
@@ -243,7 +228,7 @@
       z-index: 2;
     }
   }
-  &__input-price {
+  &__input_price {
     width: 200px;
     font-size: 16px;
     line-height: 24px;
@@ -259,7 +244,7 @@
     }
   }
 
-  &__btn-pub {
+  &__btn_pub {
     margin-top: 10px;
     width: 181px;
     height: 50px;
@@ -272,14 +257,177 @@
   }
 }
 
-.block-price {
-  position: relative;
-}
+@media screen and (max-width: 600px) {
+  .modal {
+    &__block {
+      position: absolute;
+      z-index: 5;
+      //left: calc(50% - (300px / 2));
+      left: 0;
+      width: 100vw;
+      top: 0;
+      height: 100%;
+      opacity: 1;
+    }
 
-.TiDeleteOutline {
-  position: absolute;
-  top: 90%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color:rgb(255, 0, 0);
+    &__content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      min-width: 320px;
+      //height: auto;
+      height: 100vh;
+      padding: 30px 20px 30px;
+      border-radius: 0;
+    }
+
+    &__title {
+      font-size: 24px;
+      line-height: 29px;
+      padding: 0 0 0 40px;
+      position: relative;
+
+      &::before {
+        content: '';
+        display: block;
+        width: 12px;
+        height: 12px;
+        background-color: transparent;
+        border-top: 2px solid #000000;
+        border-left: 2px solid #000000;
+        transform: rotate(-45deg);
+        position: absolute;
+        top: 9px;
+        left: 0;
+        cursor: pointer;
+      }
+    }
+
+    &__btn_close {
+      display: none;
+    }
+
+    &__form_newArt {
+      margin-top: 22px;
+    }
+  }
+
+  .form_newArt {
+    &__block {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 18px;
+    }
+
+    & label {
+      margin-bottom: 5px;
+      font-size: 14px;
+      line-height: 21px;
+      color: #000000;
+    }
+
+    &__input,
+    &__area,
+    &__input-price {
+      padding: 9px 17px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.2);
+      border-radius: 30px;
+      font-size: 16px;
+      line-height: 1;
+    }
+
+    &__input {
+      width: 100%;
+
+      &::placeholder {
+        font-size: 14px;
+        line-height: 21px;
+        color: #c4c4c4;
+      }
+    }
+
+    &__area {
+      font-family: 'Roboto', sans-serif;
+      width: 100%;
+      max-height: 107px;
+
+      &::placeholder {
+        font-size: 14px;
+        line-height: 21px;
+        color: #c4c4c4;
+      }
+    }
+
+    &__p {
+      font-size: 14px;
+      line-height: 21px;
+      margin-bottom: 10px;
+
+      & span {
+        display: block;
+        margin-left: 0px;
+        color: rgba(0, 0, 0, 0.3);
+      }
+    }
+
+    &__bar_img {
+      width: 278px;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: start;
+      margin: 0px -5px 10px;
+      overflow: hidden;
+    }
+
+    &__img {
+      display: block;
+      width: 90px;
+      min-width: 90px;
+      height: 90px;
+      background-color: #f0f0f0;
+      margin: 0 5px;
+
+      & img {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+      }
+    }
+
+    &__input_price_cover {
+      width: 21px;
+      height: 21px;
+      font-size: 14px;
+      line-height: 21px;
+      //bottom: 9px;
+      left: auto;
+      right: 18px;
+
+      &::after {
+        font-size: 14px;
+        line-height: 21px;
+      }
+    }
+
+    &__input_price {
+      width: 100%;
+
+      &::placeholder {
+        font-size: 14px;
+        line-height: 21px;
+        color: #000000;
+      }
+    }
+
+    &__btn_pub {
+      margin-top: 10px;
+      width: 100%;
+      height: 46px;
+    }
+  }
 }

@@ -11,9 +11,9 @@ export const Header = ({ user }) => {
   // localStorage.clear()
   return (
     <header className="header">
-      <a className="mob-link" target="_blank">
+      <Link to='/' className="mob-link">
         <img className="mob-img" alt="logo" src={SkyproLogoMobile} />
-      </a>
+      </Link>
       <nav className="header__nav">
         {user ? (
           <>

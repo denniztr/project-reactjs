@@ -1,16 +1,21 @@
 /* eslint-disable react/prop-types */
 
-import './seller-profile-data.scss';
+import styles from './seller-profile-data.module.scss';
 
 export const SellerProfileData = ({ seller }) => {
+
+  const handleHistoryBackClick = () => {
+    window.history.back()
+  }
+
   return (
     <>
-      <h2 className="main__h2">Профиль продавца</h2>
-      <div className="main__profile-sell">
-        <div className="profile-sell__content">
-          <div className="profile-sell__seller seller">
-            <div className="seller__left">
-              <div className="seller__img">
+      <h2 className={styles.main__h2} onClick={handleHistoryBackClick}>Профиль продавца</h2>
+      <div className={styles.main__profile_sell}>
+        <div className={styles.profile_sell__content}>
+          <div className={styles.profile_sell__seller}>
+            <div className={styles.seller__left}>
+              <div className={styles.seller__img}>
                 <a target="_self">
                   <img
                     src={seller && `http://localhost:8090/${seller.avatar}`}
@@ -19,28 +24,28 @@ export const SellerProfileData = ({ seller }) => {
                 </a>
               </div>
             </div>
-            <div className="seller__right">
-              <h3 className="seller__title">{seller && seller.name}</h3>
-              <p className="seller__city">{seller && seller.city}</p>
-              <p className="seller__inf">
+            <div className={styles.seller__right}>
+              <h3 className={styles.seller__title}>{seller && seller.name}</h3>
+              <p className={styles.seller__city}>{seller && seller.city}</p>
+              <p className={styles.seller__inf}>
                 {' '}
                 Продаёт с {seller && seller.sells_from}
               </p>
-              <div className="seller__img-mob-block">
-                <div className="seller__img-mob">
+              <div className={styles.seller__img_mob_block}>
+                <div className={styles.seller__img_mob}>
                   <a target="_self">
                     <img src={seller && `http://localhost:8090/${seller.avatar}`} alt="" />
                   </a>
                 </div>
               </div>
-              <button className="seller__btn btn-hov02">
+              <button className={styles.seller__btn}>
                 Показать телефон<span>{seller && seller.phone}</span>
               </button>
             </div>
           </div>
         </div>
       </div>
-      <h3 className="main__title title">Товары продавца</h3>
+      <h3 className={styles.main__title}>Товары продавца</h3>
     </>
   );
 };
