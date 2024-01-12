@@ -26,7 +26,6 @@ export const AdvContent = ({ data, isLoading }) => {
 
   }, [data, isLoading])
 
-  console.log(selectedImage)
 
   const user = useSelector((state) => state.user.user);
   const {refetch} = useGetAdvQuery();

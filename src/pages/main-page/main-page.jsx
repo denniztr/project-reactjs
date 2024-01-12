@@ -15,7 +15,6 @@ export const MainPage = () => {
       <div className={styles.container}>
         <main className={styles.main}>
           { auth_modal || adv_modal ? null : <SearchQuery data={data} /> }
-          {/* <SearchQuery data={data} /> */}
           <div className={styles.main__container}>
             <h2 className={styles.main__h2}>Объявления</h2>
             <CardsContent data={filteredData || data} isLoading={isLoading} />

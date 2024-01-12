@@ -77,7 +77,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
             <div className={styles.form_newArt__block}>
               <label htmlFor="text" className={styles.form_newArt__label}>Описание</label>
               <textarea
-                className="form-newArt__area"
+                className={styles.form_newArt__area}
                 name="text"
                 id="formArea"
                 cols="auto"

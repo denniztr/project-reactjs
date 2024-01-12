@@ -19,11 +19,13 @@ export const SearchQuery = ({ data }) => {
   }
 
   useEffect(() => {
-    setTimeout(() => {
-      const results = data.filter(item => item.title.toLowerCase().includes(searchTextMob.toLowerCase()));
-      dispatch(setFilteredData(results));
-    }, 500);
-    clearTimeout()
+    if (data) {
+      setTimeout(() => {
+        const results = data.filter(item => item.title.toLowerCase().includes(searchTextMob.toLowerCase()));
+        dispatch(setFilteredData(results));
+      }, 500);
+      clearTimeout()
+    }
   }, [data, dispatch, searchTextMob])
 
   useEffect(() => {
