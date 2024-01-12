@@ -67,6 +67,21 @@ export const Authorization = () => {
 
     if (!email || !password) {
       setError('Не заполнены данные для входа');
+      setTimeout(() => {
+        setError('');
+      }, 2000);
+
+      return;
+    }
+
+    if (!isEmailValid(email)) {
+      setError('Введён некорректный емейл');
+
+      setTimeout(() => {
+        setError('');
+      }, 2000);
+
+      return;
     }
 
     postLogin({ email, password }).then((res) => {
@@ -75,6 +90,13 @@ export const Authorization = () => {
       dispatch(setAuthModal(false));
       navigate('/profile');
     });
+  };
+
+  const isEmailValid = (email) => {
+    const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (email.match(mailformat)) {
+      return true;
+    } else return false;
   };
 
   return (
@@ -163,7 +185,7 @@ export const Authorization = () => {
               placeholder="Город (необязательно)"
               onChange={(event) => setCity(event.target.value)}
             />
-            <p>{error}</p>
+            <p style={{ marginTop: '10px', color: 'orange' }}>{error}</p>
             <button
               className={styles.modal__btn_signup_ent}
               id="SignUpEnter"
@@ -204,6 +226,7 @@ export const Authorization = () => {
               placeholder="Пароль"
               onChange={(event) => setPassword(event.target.value)}
             />
+            <p style={{ marginTop: '10px', color: 'orange' }}>{error}</p>
             <button
               className={styles.modal__btn_enter}
               id="btnEnter"

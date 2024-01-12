@@ -44,6 +44,7 @@ export const AdvContent = ({ data, isLoading }) => {
   const auth_modal = useSelector((state) => state.modal.authModal)
   const adv_modal = useSelector((state) => state.modal.advModal)
   const edit_modal = useSelector((state) => state.modal.editModal)
+  
   return (
     <>
       {isLoading ? (

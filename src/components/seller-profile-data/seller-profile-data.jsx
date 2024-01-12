@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
-
+import { useState } from 'react';
 import styles from './seller-profile-data.module.scss';
 
 export const SellerProfileData = ({ seller }) => {
+  const [phone, showPhone] = useState(false);
 
   const handleHistoryBackClick = () => {
     window.history.back()
@@ -38,8 +39,13 @@ export const SellerProfileData = ({ seller }) => {
                   </a>
                 </div>
               </div>
-              <button className={styles.seller__btn}>
-                Показать телефон<span>{seller && seller.phone}</span>
+              <button 
+                className={styles.seller__btn}
+                onClick={() => showPhone(!phone)}
+              >
+                  Показать телефон
+                {/* <span>{seller && seller.phone}</span> */}
+                {phone ? <span>{seller?.phone}</span> : ''}
               </button>
             </div>
           </div>

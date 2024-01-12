@@ -186,6 +186,7 @@
     &::before {
       transform: rotate(90deg);
     }
+
   }
 
   &__img {
@@ -249,7 +250,7 @@
     margin-top: 10px;
     width: 181px;
     height: 50px;
-    background: #d9d9d9;
+    background-color: #009ee4;
     border: 1px solid #d9d9d9;
     border-radius: 6px;
     font-size: 16px;
@@ -260,10 +261,8 @@
 
 .md_delete {
   position: absolute;
-  // top: calc(50% - (30px / 2));
-  // left: calc(50% - (30px / 2));
-  bottom: -18px;
-  left: 30px;
+  top: 20px;
+  left: 23px;
   color: rgb(255, 0, 0);
   cursor: pointer;
 }
@@ -274,8 +273,6 @@
     &__block {
       position: absolute;
       z-index: 5;
-      //left: 25px;
-      //top: 75px;
       opacity: 1;
       top: 0;
       left: 0;
@@ -285,10 +282,8 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      // width: 100%;
       width: 100vw;
       min-width: 320px;
-      // height: auto;
       height: 100vh;
       padding: 30px 20px 30px;
       border-radius: 0;

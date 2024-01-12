@@ -7,7 +7,6 @@ import styles from './profile-page.module.scss'
 export const ProfilePage = () => {
   const { data, isLoading } = useGetUserQuery();
   const { data: myAdvData, isLoading: myAdvLoading  } = useGetMyAdvQuery();
-  console.log(myAdvData)
   return ( 
     <div className={styles.wrapper}>
       <div className={styles.container}>

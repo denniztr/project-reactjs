@@ -84,9 +84,8 @@ export const advApi = createApi({
     }),
     deleteImage: build.mutation({
       query: ({ id, file_url }) => ({
-        url: `ads/${id}/image`,
+        url: `ads/${id}/image?file_url=${file_url}`,
         method: 'DELETE',
-        body: file_url,
       }),
     }),
     getMyAdv: build.query({
