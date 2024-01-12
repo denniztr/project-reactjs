@@ -1,8 +1,8 @@
 # SkyVito
-
+## The final project at Skypro online university. 
 ---
 
-## The final project at Skypro online university. This project features the following functionality:
+## This project features the following functionality:
 
     - Register and log in
     - Update the profile data
