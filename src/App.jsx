@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import { AppRoutes } from "./routes/routes";
-import { Header, Authorization, NewAdvModal } from "./components";
+import { Header, Authorization, NewAdvModal, Footer } from "./components";
 
 function App() {
   const auth_modal = useSelector((state) => state.modal.authModal);
@@ -15,6 +15,7 @@ function App() {
       <AppRoutes />
       { auth_modal ? <Authorization /> : null }
       { adv_modal ? <NewAdvModal /> : null }
+      <Footer />
     </BrowserRouter>
   )
 }
