@@ -1,6 +1,7 @@
 # SkyVito
+## The final project at Skypro online university. 
 
-## The final project at Skypro online university. This project features the following functionality:
+### This project features the following functionality:
 
     - Register and log in
     - Update the profile data
@@ -13,7 +14,7 @@
 
 ---
 
-## The following stack was used in the project:
+### The following stack was used in the project:
 
     - JavaScript
     - React.js
@@ -24,23 +25,17 @@
 
 ---
 
-## Start the project:
+### Start the project:
 
-    ```
     - git clone https://github.com/denniztr/project-reactjs.git
-    ```
 
-    ```
     - install the project packages -npm i
-    ```
 
-    ```
-    - npm run dev
-    ```
+     - npm run dev
 
 ---
 
-## Start the backend:
+### Start the backend:
 
     - To run the backend, you will need to install Docker. 
     - Download the version for your operating system and launch it. 
