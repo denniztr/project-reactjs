@@ -25,16 +25,13 @@
 
 ---
 
-## Start the project:
-    ```
-    git clone https://github.com/denniztr/project-reactjs.git
-    ```
-    ```
-    install the project packages -npm i
-    ```
-    ```
-     npm run dev
-    ```
+### Start the project:
+
+    - git clone https://github.com/denniztr/project-reactjs.git
+
+    - install the project packages -npm i
+
+     - npm run dev
 
 ---
 
