@@ -1,6 +1,5 @@
 # SkyVito
 ## The final project at Skypro online university. 
----
 
 ## This project features the following functionality:
 
