@@ -1,5 +1,7 @@
 # SkyVito
 
+---
+
 ## The final project at Skypro online university. This project features the following functionality:
 
     - Register and log in
@@ -26,17 +28,12 @@
 
 ## Start the project:
 
-    ```
     - git clone https://github.com/denniztr/project-reactjs.git
-    ```
 
-    ```
     - install the project packages -npm i
-    ```
 
-    ```
     - npm run dev
-    ```
+    
 
 ---
 
