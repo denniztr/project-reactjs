@@ -84,19 +84,40 @@ export const Authorization = () => {
       return;
     }
 
-    postLogin({ email, password }).then((res) => {
-      dispatch(setAccessToken(res.data.access_token));
-      localStorage.setItem('refresh_token', res.data.refresh_token);
-      dispatch(setAuthModal(false));
-      navigate('/profile');
-    });
+    postLogin({ email, password })
+      .unwrap()
+      .then((res) => {
+        dispatch(setAccessToken(res.data.access_token));
+        localStorage.setItem('refresh_token', res.data.refresh_token);
+        dispatch(setAuthModal(false));
+        navigate('/profile');
+      })
+      .catch((error) => {
+        debugger
+        if (error.data.detail === 'Incorrect password') {
+          setError('Неверный пароль');
+          setTimeout(() => {
+            setError('');
+          }, 3500);
+        } else if (error.data.detail === 'Incorrect email') {
+          setError('Неверный емейл');
+          setTimeout(() => {
+            setError('');
+          }, 3500);
+        } else {
+          setError('Что-то случилось');
+          setTimeout(() => {
+            setError('');
+          }, 3500);
+        }
+      });
   };
 
   const isEmailValid = (email) => {
     const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (email.match(mailformat)) {
       return true;
-    } else return false;
+    } else false;
   };
 
   return (
@@ -185,7 +206,9 @@ export const Authorization = () => {
               placeholder="Город (необязательно)"
               onChange={(event) => setCity(event.target.value)}
             />
-            <p style={{ marginTop: '10px', color: 'orange' }}>{error}</p>
+            {error && (
+              <p style={{ marginTop: '10px', color: 'orange' }}>{error}</p>
+            )}
             <button
               className={styles.modal__btn_signup_ent}
               id="SignUpEnter"
@@ -226,7 +249,17 @@ export const Authorization = () => {
               placeholder="Пароль"
               onChange={(event) => setPassword(event.target.value)}
             />
-            <p style={{ marginTop: '10px', color: 'orange' }}>{error}</p>
+            {error && (
+              <p
+                style={{
+                  marginTop: '10px',
+                  color: 'orange',
+                  textAlign: 'center',
+                }}
+              >
+                {error}
+              </p>
+            )}
             <button
               className={styles.modal__btn_enter}
               id="btnEnter"
