@@ -143,7 +143,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                       alt="image"
                     />
                   ) : (
-                    <img src="" alt="img" />
+                    null
                   )}
                   <div className={styles.form_newArt__img_cover}></div>
                   {data.images[0]?.url ? (
@@ -181,7 +181,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                       alt="image"
                     />
                   ) : (
-                    <img src="" alt="img" />
+                    null
                   )}
                   <div className={styles.form_newArt__img_cover}></div>
                   {data.images[1]?.url ? (
@@ -229,7 +229,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                       alt="image"
                     />
                   ) : (
-                    <img src="" alt="img" />
+                    null
                   )}
                 </div>
 
@@ -268,7 +268,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                       alt="image"
                     />
                   ) : (
-                    <img src="" alt="img" />
+                    null
                   )}
                 </div>
                 <div
@@ -306,7 +306,7 @@ export const EditAdvertisementComponent = ({ data, refetch }) => {
                       alt="img"
                     />
                   ) : (
-                    <img src="" alt="img" />
+                    null
                   )}
                 </div>
               </div>

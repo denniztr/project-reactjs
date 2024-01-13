@@ -87,13 +87,12 @@ export const Authorization = () => {
     postLogin({ email, password })
       .unwrap()
       .then((res) => {
-        dispatch(setAccessToken(res.data.access_token));
-        localStorage.setItem('refresh_token', res.data.refresh_token);
+        dispatch(setAccessToken(res.access_token));
+        localStorage.setItem('refresh_token', res.refresh_token);
         dispatch(setAuthModal(false));
         navigate('/profile');
       })
       .catch((error) => {
-        debugger
         if (error.data.detail === 'Incorrect password') {
           setError('Неверный пароль');
           setTimeout(() => {

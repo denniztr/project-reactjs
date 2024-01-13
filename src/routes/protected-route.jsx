@@ -1,10 +1,14 @@
 /* eslint-disable react/prop-types */
-import { Navigate, Outlet } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
 
-export const ProtectedRoute = ({ redirectPath = '/', isAllowed }) => {
-  if (!isAllowed) {
+
+export const ProtectedRoute = ({ children, redirectPath = '/' }) => {
+  const user = useSelector((state) => state.user.user);
+
+  if (!user) {
     return <Navigate to={redirectPath} replace={true} />;
   }
 
-  return <Outlet />;
+  return children;
 };
