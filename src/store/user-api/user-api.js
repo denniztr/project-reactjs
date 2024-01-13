@@ -6,6 +6,7 @@ export const userApi = createApi({
     baseUrl: 'http://localhost:8090/',
     prepareHeaders: (headers, { getState }) => {
       const token = getState().user.access_token;
+      console.log(token)
       if (token) headers.set('Authorization', `Bearer ${token}`);
     },
   }),
@@ -15,6 +16,12 @@ export const userApi = createApi({
     }),
     getUser: build.query({
       query: () => 'user',
+    }),
+    getUserApp: build.mutation({
+      query: () => ({
+        url: 'user',
+        method: 'GET',
+      }),
     }),
     postUserAvatar: build.mutation({
       query: (formData) => ({
@@ -57,4 +64,5 @@ export const {
   usePostUserAvatarMutation,
   usePatchUserMutation,
   useUpdateTokenMutation,
+  useGetUserAppMutation,
 } = userApi;

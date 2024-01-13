@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router-dom';
 import { MainPage, AdvPage, SellerPage, ProfilePage } from '../pages/index';
 
+
 export const AppRoutes = () => {
   return (
     <Routes>
